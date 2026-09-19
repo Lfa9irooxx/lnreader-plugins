@@ -6,12 +6,12 @@ import { gcm } from '@libs/aes';
 import { storage } from '@libs/storage';
 
 class WTRLAB implements Plugin.PluginBase {
-  id = 'WTRLAB';
-  name = 'WTR-LAB';
+  id = 'WTRLAB_AR';
+  name = 'WTR-LAB (Arabic)';
   site = 'https://wtr-lab.com/';
   version = '1.2.0';
-  icon = 'src/en/wtrlab/icon.png';
-  sourceLang = 'en/';
+  icon = 'src/ar/wtrlab/icon.png';
+  sourceLang = 'ar/';
   baggage = '';
   trace = '';
 
@@ -284,7 +284,7 @@ class WTRLAB implements Plugin.PluginBase {
 
       return novels;
     } else {
-      const finderPage = await fetchApi(this.site + 'en/novel-finder').then(
+      const finderPage = await fetchApi(this.site + this.sourceLang + 'novel-finder').then(
         res => res.text(),
       );
       const finderCheerio = parseHTML(finderPage);
@@ -294,7 +294,7 @@ class WTRLAB implements Plugin.PluginBase {
       }
       const buildId = JSON.parse(nextData).buildId;
 
-      link = `${this.site}_next/data/${buildId}/en/novel-finder.json?${params.toString()}`;
+      link = `${this.site}_next/data/${buildId}/${this.sourceLang}novel-finder.json?${params.toString()}`;
 
       const response = await fetchApi(link);
       const json = await response.json();
@@ -635,7 +635,7 @@ class WTRLAB implements Plugin.PluginBase {
           'X-Goog-API-Key': 'AIzaSyATBXajvzQLTDHEQbcpq0Ihe0vWDHmO520',
         },
         'referrer': 'https://wtr-lab.com/',
-        'body': `[[${JSON.stringify(contained)},"zh-CN","en"],"te_lib"]`,
+        'body': `[[${JSON.stringify(contained)},"zh-CN","ar"],"te_lib"]`,
         'method': 'POST',
       },
     );
