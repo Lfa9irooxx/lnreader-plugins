@@ -151,7 +151,7 @@ var t = require("@libs/fetch"),
       ((this.id = "WTRLAB_AR"),
         (this.name = "WTR-LAB (Arabic)"),
         (this.site = "https://wtr-lab.com/"),
-        (this.version = "1.2.5"),
+        (this.version = "1.2.6"),
         (this.icon = "src/ar/wtrlab/icon.png"),
         (this.sourceLang = "en/"),
         (this.baggage = ""),
@@ -2207,7 +2207,7 @@ var t = require("@libs/fetch"),
                             return e.text();
                           }),
                         ]
-                    : [3, 17]
+                    : [3, 15]
                 );
               case 12:
                 ((_ = a.sent()), (s = (0, u.load)(_)), (a.label = 13));
@@ -2217,10 +2217,10 @@ var t = require("@libs/fetch"),
                 return ((D = a.sent()), [4, this.decrypt(F, D)]);
               case 15:
                 return (
-                  (F = a.sent()),
+                  (F = a.sent() || F),
                   Object.prototype.hasOwnProperty.call(F, "error")
                     ? [2, (x += "<p>".concat(F.error.toString(), "</p>"))]
-                    : [4, this.translate(F)]
+                    : [4, this.translate(Array.isArray(F) ? F : [F])]
                 );
               case 16:
                 ((F = a.sent()),
