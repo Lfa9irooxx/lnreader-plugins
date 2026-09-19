@@ -151,7 +151,7 @@ var t = require("@libs/fetch"),
       ((this.id = "WTRLAB_AR"),
         (this.name = "WTR-LAB (Arabic)"),
         (this.site = "https://wtr-lab.com/"),
-        (this.version = "1.2.6"),
+        (this.version = "1.2.7"),
         (this.icon = "src/ar/wtrlab/icon.png"),
         (this.sourceLang = "en/"),
         (this.baggage = ""),
@@ -2216,12 +2216,29 @@ var t = require("@libs/fetch"),
               case 14:
                 return ((D = a.sent()), [4, this.decrypt(F, D)]);
               case 15:
-                return (
-                  (F = a.sent() || F),
-                  Object.prototype.hasOwnProperty.call(F, "error")
-                    ? [2, (x += "<p>".concat(F.error.toString(), "</p>"))]
-                    : [4, this.translate(Array.isArray(F) ? F : [F])]
-                );
+                F = a.sent() || F;
+                if (Object.prototype.hasOwnProperty.call(F, "error")) {
+                  return [2, (x += "<p>".concat(F.error.toString(), "</p>"))];
+                }
+                R =
+                  (null === (H = null == L ? void 0 : L.terms) || void 0 === H
+                    ? void 0
+                    : H.map(function (e) {
+                        return e[0];
+                      })) || [];
+                if (R.length > 0 && Array.isArray(F)) {
+                  F = F.map(function (line) {
+                    return typeof line === "string"
+                      ? line.replaceAll(
+                          /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
+                          function (match, idx) {
+                            return R[parseInt(idx)] || match;
+                          },
+                        )
+                      : line;
+                  });
+                }
+                return [4, this.translate(Array.isArray(F) ? F : [F])];
               case 16:
                 ((F = a.sent()),
                   (m = "".concat(m, " + Google Translate (on-device)")),
