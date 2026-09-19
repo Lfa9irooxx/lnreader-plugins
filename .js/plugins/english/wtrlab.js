@@ -1,641 +1,2377 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
+var e =
+    (this && this.__assign) ||
+    function () {
+      return (
+        (e =
+          Object.assign ||
+          function (e) {
+            for (var l, a = 1, t = arguments.length; a < t; a++)
+              for (var r in (l = arguments[a]))
+                Object.prototype.hasOwnProperty.call(l, r) && (e[r] = l[r]);
+            return e;
+          }),
+        e.apply(this, arguments)
+      );
+    },
+  l =
+    (this && this.__awaiter) ||
+    function (e, l, a, t) {
+      return new (a || (a = Promise))(function (r, u) {
+        function n(e) {
+          try {
+            o(t.next(e));
+          } catch (e) {
+            u(e);
+          }
         }
+        function i(e) {
+          try {
+            o(t.throw(e));
+          } catch (e) {
+            u(e);
+          }
+        }
+        function o(e) {
+          var l;
+          e.done
+            ? r(e.value)
+            : ((l = e.value),
+              l instanceof a
+                ? l
+                : new a(function (e) {
+                    e(l);
+                  })).then(n, i);
+        }
+        o((t = t.apply(e, l || [])).next());
+      });
+    },
+  a =
+    (this && this.__generator) ||
+    function (e, l) {
+      var a,
+        t,
+        r,
+        u = {
+          label: 0,
+          sent: function () {
+            if (1 & r[0]) throw r[1];
+            return r[1];
+          },
+          trys: [],
+          ops: [],
+        },
+        n = Object.create(
+          ("function" == typeof Iterator ? Iterator : Object).prototype,
+        );
+      return (
+        (n.next = i(0)),
+        (n.throw = i(1)),
+        (n.return = i(2)),
+        "function" == typeof Symbol &&
+          (n[Symbol.iterator] = function () {
+            return this;
+          }),
+        n
+      );
+      function i(i) {
+        return function (o) {
+          return (function (i) {
+            if (a) throw new TypeError("Generator is already executing.");
+            for (; n && ((n = 0), i[0] && (u = 0)), u;)
+              try {
+                if (
+                  ((a = 1),
+                  t &&
+                    (r =
+                      2 & i[0]
+                        ? t.return
+                        : i[0]
+                          ? t.throw || ((r = t.return) && r.call(t), 0)
+                          : t.next) &&
+                    !(r = r.call(t, i[1])).done)
+                )
+                  return r;
+                switch (((t = 0), r && (i = [2 & i[0], r.value]), i[0])) {
+                  case 0:
+                  case 1:
+                    r = i;
+                    break;
+                  case 4:
+                    return (u.label++, { value: i[1], done: !1 });
+                  case 5:
+                    (u.label++, (t = i[1]), (i = [0]));
+                    continue;
+                  case 7:
+                    ((i = u.ops.pop()), u.trys.pop());
+                    continue;
+                  default:
+                    if (
+                      !((r = u.trys),
+                      (r = r.length > 0 && r[r.length - 1]) ||
+                        (6 !== i[0] && 2 !== i[0]))
+                    ) {
+                      u = 0;
+                      continue;
+                    }
+                    if (3 === i[0] && (!r || (i[1] > r[0] && i[1] < r[3]))) {
+                      u.label = i[1];
+                      break;
+                    }
+                    if (6 === i[0] && u.label < r[1]) {
+                      ((u.label = r[1]), (r = i));
+                      break;
+                    }
+                    if (r && u.label < r[2]) {
+                      ((u.label = r[2]), u.ops.push(i));
+                      break;
+                    }
+                    (r[2] && u.ops.pop(), u.trys.pop());
+                    continue;
+                }
+                i = l.call(e, u);
+              } catch (e) {
+                ((i = [6, e]), (t = 0));
+              } finally {
+                a = r = 0;
+              }
+            if (5 & i[0]) throw i[1];
+            return { value: i[0] ? i[1] : void 0, done: !0 };
+          })([i, o]);
+        };
+      }
+    };
+Object.defineProperty(exports, "__esModule", { value: !0 });
+var t = require("@libs/fetch"),
+  r = require("@libs/filterInputs"),
+  u = require("cheerio"),
+  n = require("@libs/aes"),
+  i = require("@libs/storage"),
+  o = (function () {
+    function o() {
+      ((this.id = "WTRLAB_AR"),
+        (this.name = "WTR-LAB (Arabic)"),
+        (this.site = "https://wtr-lab.com/"),
+        (this.version = "1.2.5"),
+        (this.icon = "src/ar/wtrlab/icon.png"),
+        (this.sourceLang = "en/"),
+        (this.baggage = ""),
+        (this.trace = ""),
+        (this.pluginSettings = {
+          signInUrl: {
+            value: "",
+            label:
+              'Sign-in link â€” request "Continue with Email" on wtr-lab, then paste the full link from that email here (the plugin reads the token out of it and redeems it). Clear this field once AI chapters load; links are single-use and short-lived.',
+            type: "Text",
+          },
+          sessionCookie: {
+            value: "",
+            label:
+              "Session cookie (fallback) â€” usually leave EMPTY. Android replaces this header with its own stored cookies whenever it has any, so the sign-in link above is the reliable route.",
+            type: "Text",
+          },
+          preferredMode: {
+            value: "ai",
+            label: "Preferred translation",
+            type: "Select",
+            options: [
+              { label: "AI", value: "ai" },
+              { label: "Web+", value: "webplus" },
+              { label: "Web", value: "web" },
+              { label: "Custom â€” set the id below", value: "custom" },
+            ],
+          },
+          customMode: {
+            value: "",
+            label:
+              'Custom translation id â€” only used when "Custom" is selected above. This is the value wtr-lab sends as "translate" in its /api/reader/get request.',
+            type: "Text",
+          },
+          fallbackToWeb: {
+            value: !0,
+            label:
+              "Fall back to Web when the preferred translation is unavailable",
+            type: "Switch",
+          },
+          showModeNotice: {
+            value: !0,
+            label: "Show which translation was used at the top of each chapter",
+            type: "Switch",
+          },
+        }),
+        (this.signInAttempted = !1),
+        (this.filters = {
+          search: { value: "", label: "Search", type: r.FilterTypes.TextInput },
+          orderBy: {
+            value: "update",
+            label: "Order by",
+            options: [
+              { label: "Update Date", value: "update" },
+              { label: "Addition Date", value: "date" },
+              { label: "Random", value: "random" },
+              { label: "Weekly View", value: "weekly_rank" },
+              { label: "Monthly View", value: "monthly_rank" },
+              { label: "All-Time View", value: "view" },
+              { label: "Name", value: "name" },
+              { label: "Reader", value: "reader" },
+              { label: "Chapter", value: "chapter" },
+              { label: "Rating", value: "rating" },
+              { label: "Review Count", value: "total_rate" },
+              { label: "Vote Count", value: "vote" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          order: {
+            value: "desc",
+            label: "Order",
+            options: [
+              { label: "Descending", value: "desc" },
+              { label: "Ascending", value: "asc" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          status: {
+            value: "all",
+            label: "Status",
+            options: [
+              { label: "All", value: "all" },
+              { label: "Ongoing", value: "ongoing" },
+              { label: "Completed", value: "completed" },
+              { label: "Hiatus", value: "hiatus" },
+              { label: "Dropped", value: "dropped" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          release_status: {
+            value: "all",
+            label: "Release Status",
+            options: [
+              { label: "All", value: "all" },
+              { label: "Released", value: "released" },
+              { label: "On Voting", value: "voting" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          addition_age: {
+            value: "all",
+            label: "Addition Age",
+            options: [
+              { label: "All", value: "all" },
+              { label: "< 2 Days", value: "day" },
+              { label: "< 1 Week", value: "week" },
+              { label: "< 1 Month", value: "month" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          min_chapters: {
+            value: "",
+            label: "Minimum Chapters",
+            type: r.FilterTypes.TextInput,
+          },
+          min_rating: {
+            value: "",
+            label: "Minimum Rating (0.0-5.0)",
+            type: r.FilterTypes.TextInput,
+          },
+          min_review_count: {
+            value: "",
+            label: "Minimum Review Count",
+            type: r.FilterTypes.TextInput,
+          },
+          genre_operator: {
+            value: "and",
+            label: "Genre (And/Or)",
+            options: [
+              { label: "And", value: "and" },
+              { label: "Or", value: "or" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          genres: {
+            label: "Genres",
+            type: r.FilterTypes.ExcludableCheckboxGroup,
+            value: { include: [], exclude: [] },
+            options: [
+              { label: "Action", value: "action" },
+              { label: "Adult", value: "adult" },
+              { label: "Adventure", value: "adventure" },
+              { label: "Comedy", value: "comedy" },
+              { label: "Drama", value: "drama" },
+              { label: "Ecchi", value: "ecchi" },
+              { label: "Erciyuan", value: "erciyuan" },
+              { label: "Fan-Fiction", value: "fan-fiction" },
+              { label: "Fantasy", value: "fantasy" },
+              { label: "Game", value: "game" },
+              { label: "Gender-Bender", value: "gender-bender" },
+              { label: "Harem", value: "harem" },
+              { label: "Historical", value: "historical" },
+              { label: "Horror", value: "horror" },
+              { label: "Josei", value: "josei" },
+              { label: "Martial-Arts", value: "martial-arts" },
+              { label: "Mature", value: "mature" },
+              { label: "Mecha", value: "mecha" },
+              { label: "Military", value: "military" },
+              { label: "Mystery", value: "mystery" },
+              { label: "Psychological", value: "psychological" },
+              { label: "Romance", value: "romance" },
+              { label: "School-Life", value: "school-life" },
+              { label: "Sci-Fi", value: "sci-fi" },
+              { label: "Seinen", value: "seinen" },
+              { label: "Shoujo", value: "shoujo" },
+              { label: "Shoujo-Ai", value: "shoujo-ai" },
+              { label: "Shounen", value: "shounen" },
+              { label: "Shounen-Ai", value: "shounen-ai" },
+              { label: "Slice-Of-Life", value: "slice-of-life" },
+              { label: "Smut", value: "smut" },
+              { label: "Sports", value: "sports" },
+              { label: "Supernatural", value: "supernatural" },
+              { label: "Tragedy", value: "tragedy" },
+              { label: "Urban-Life", value: "urban-life" },
+              { label: "Wuxia", value: "wuxia" },
+              { label: "Xianxia", value: "xianxia" },
+              { label: "Xuanhuan", value: "xuanhuan" },
+              { label: "Yaoi", value: "yaoi" },
+              { label: "Yuri", value: "yuri" },
+            ],
+          },
+          tag_operator: {
+            value: "and",
+            label: "Tag (And/Or)",
+            options: [
+              { label: "And", value: "and" },
+              { label: "Or", value: "or" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          tags: {
+            label: "Tags",
+            type: r.FilterTypes.ExcludableCheckboxGroup,
+            value: { include: [], exclude: [] },
+            options: [
+              { label: "Abandoned Children", value: "1" },
+              { label: "Ability Steal", value: "2" },
+              { label: "Absent Parents", value: "3" },
+              { label: "Abusive Characters", value: "4" },
+              { label: "Academy", value: "5" },
+              { label: "Accelerated Growth", value: "6" },
+              { label: "Acting", value: "7" },
+              { label: "Adapted from Manga", value: "8" },
+              { label: "Adapted from Manhua", value: "9" },
+              { label: "Adapted to Anime", value: "10" },
+              { label: "Adapted to Drama", value: "11" },
+              { label: "Adapted to Drama CD", value: "12" },
+              { label: "Adapted to Game", value: "13" },
+              { label: "Adapted to Manga", value: "14" },
+              { label: "Adapted to Manhua", value: "15" },
+              { label: "Adapted to Manhwa", value: "16" },
+              { label: "Adapted to Movie", value: "17" },
+              { label: "Adapted to Visual Novel", value: "18" },
+              { label: "Adopted Children", value: "19" },
+              { label: "Adopted Protagonist", value: "20" },
+              { label: "Adultery", value: "21" },
+              { label: "Adventurers", value: "22" },
+              { label: "Affair", value: "23" },
+              { label: "Age Progression", value: "24" },
+              { label: "Age Regression", value: "25" },
+              { label: "Aggressive Characters", value: "26" },
+              { label: "Alchemy", value: "27" },
+              { label: "Aliens", value: "28" },
+              { label: "All-Girls School", value: "29" },
+              { label: "Alternate World", value: "30" },
+              { label: "Amnesia", value: "31" },
+              { label: "Amusement Park", value: "32" },
+              { label: "Anal", value: "33" },
+              { label: "Ancient China", value: "34" },
+              { label: "Ancient Times", value: "35" },
+              { label: "Androgynous Characters", value: "36" },
+              { label: "Androids", value: "37" },
+              { label: "Angels", value: "38" },
+              { label: "Animal Characteristics", value: "39" },
+              { label: "Animal Rearing", value: "40" },
+              { label: "Anti-Magic", value: "41" },
+              { label: "Anti-social Protagonist", value: "42" },
+              { label: "Antihero Protagonist", value: "43" },
+              { label: "Antique Shop", value: "44" },
+              { label: "Apartment Life", value: "45" },
+              { label: "Apathetic Protagonist", value: "46" },
+              { label: "Apocalypse", value: "47" },
+              { label: "Appearance Changes", value: "48" },
+              { label: "Appearance Different from Actual Age", value: "49" },
+              { label: "Archery", value: "50" },
+              { label: "Aristocracy", value: "51" },
+              { label: "Arms Dealers", value: "52" },
+              { label: "Army", value: "53" },
+              { label: "Army Building", value: "54" },
+              { label: "Arranged Marriage", value: "55" },
+              { label: "Array", value: "822" },
+              { label: "Arrogant Characters", value: "56" },
+              { label: "Artifact Crafting", value: "57" },
+              { label: "Artifacts", value: "58" },
+              { label: "Artificial Intelligence", value: "59" },
+              { label: "Artists", value: "60" },
+              { label: "Assassins", value: "61" },
+              { label: "Astrologers", value: "62" },
+              { label: "Autism", value: "63" },
+              { label: "Automatons", value: "64" },
+              { label: "Average-looking Protagonist", value: "65" },
+              { label: "Award-winning Work", value: "66" },
+              { label: "Awkward Protagonist", value: "67" },
+              { label: "Bands", value: "68" },
+              { label: "Based on a Movie", value: "69" },
+              { label: "Based on a Song", value: "70" },
+              { label: "Based on a TV Show", value: "71" },
+              { label: "Based on a Video Game", value: "72" },
+              { label: "Based on a Visual Novel", value: "73" },
+              { label: "Based on an Anime", value: "74" },
+              { label: "Basketball", value: "809" },
+              { label: "Battle Academy", value: "75" },
+              { label: "Battle Competition", value: "76" },
+              { label: "BDSM", value: "77" },
+              { label: "Beast Companions", value: "78" },
+              { label: "Beastkin", value: "79" },
+              { label: "Beasts", value: "80" },
+              { label: "Beautiful Female Lead", value: "81" },
+              { label: "Bestiality", value: "82" },
+              { label: "Betrayal", value: "83" },
+              { label: "Bickering Couple", value: "84" },
+              { label: "Biochip", value: "85" },
+              { label: "Bisexual Protagonist", value: "86" },
+              { label: "Black Belly", value: "87" },
+              { label: "Blackmail", value: "88" },
+              { label: "Blacksmith", value: "89" },
+              { label: "Bleach", value: "770" },
+              { label: "Blind Dates", value: "90" },
+              { label: "Blind Protagonist", value: "91" },
+              { label: "Blood Manipulation", value: "92" },
+              { label: "Bloodlines", value: "93" },
+              { label: "Body Swap", value: "94" },
+              { label: "Body Tempering", value: "95" },
+              { label: "Body-double", value: "96" },
+              { label: "Bodyguards", value: "97" },
+              { label: "Books", value: "98" },
+              { label: "Bookworm", value: "99" },
+              { label: "Boss-Subordinate Relationship", value: "100" },
+              { label: "Brainwashing", value: "101" },
+              { label: "Breast Fetish", value: "102" },
+              { label: "Broken Engagement", value: "103" },
+              { label: "Brother Complex", value: "104" },
+              { label: "Brotherhood", value: "105" },
+              { label: "Buddhism", value: "106" },
+              { label: "Bullying", value: "107" },
+              { label: "Business Management", value: "108" },
+              { label: "Business Wars", value: "806" },
+              { label: "Businessmen", value: "109" },
+              { label: "Butlers", value: "110" },
+              { label: "Calm Protagonist", value: "111" },
+              { label: "Cannibalism", value: "112" },
+              { label: "Card Games", value: "113" },
+              { label: "Carefree Protagonist", value: "114" },
+              { label: "Caring Protagonist", value: "115" },
+              { label: "Cautious Protagonist", value: "116" },
+              { label: "Celebrities", value: "117" },
+              { label: "Character Growth", value: "118" },
+              { label: "Charismatic Protagonist", value: "119" },
+              { label: "Charming Protagonist", value: "120" },
+              { label: "Chat Rooms", value: "121" },
+              { label: "Cheats", value: "122" },
+              { label: "Chefs", value: "123" },
+              { label: "Child Abuse", value: "124" },
+              { label: "Child Protagonist", value: "125" },
+              { label: "Childcare", value: "126" },
+              { label: "Childhood Friends", value: "127" },
+              { label: "Childhood Love", value: "128" },
+              { label: "Childhood Promise", value: "129" },
+              { label: "Childish Protagonist", value: "130" },
+              { label: "Chuunibyou", value: "131" },
+              { label: "Clan Building", value: "132" },
+              { label: "Class Awakening", value: "827" },
+              { label: "Classic", value: "133" },
+              { label: "Clever Protagonist", value: "134" },
+              { label: "Clingy Lover", value: "135" },
+              { label: "Clones", value: "136" },
+              { label: "Clubs", value: "137" },
+              { label: "Clumsy Love Interests", value: "138" },
+              { label: "Co-Workers", value: "139" },
+              { label: "Cohabitation", value: "140" },
+              { label: "Cold Love Interests", value: "141" },
+              { label: "Cold Protagonist", value: "142" },
+              { label: "Collection of Short Stories", value: "143" },
+              { label: "College/University", value: "144" },
+              { label: "Coma", value: "145" },
+              { label: "Comedic Undertone", value: "146" },
+              { label: "Coming of Age", value: "147" },
+              { label: "Complex Family Relationships", value: "148" },
+              { label: "Conditional Power", value: "149" },
+              { label: "Conferred Gods", value: "800" },
+              { label: "Confident Protagonist", value: "150" },
+              { label: "Confinement", value: "151" },
+              { label: "Conflicting Loyalties", value: "152" },
+              { label: "Contracts", value: "153" },
+              { label: "Cooking", value: "154" },
+              { label: "Copy", value: "807" },
+              { label: "Corruption", value: "155" },
+              { label: "Cosmic Wars", value: "156" },
+              { label: "Cosplay", value: "157" },
+              { label: "Couple Growth", value: "158" },
+              { label: "Court Official", value: "159" },
+              { label: "Cousins", value: "160" },
+              { label: "Cowardly Protagonist", value: "161" },
+              { label: "Crafting", value: "162" },
+              { label: "Crime", value: "163" },
+              { label: "Criminals", value: "164" },
+              { label: "Cross-dressing", value: "165" },
+              { label: "Crossover", value: "166" },
+              { label: "Cruel Characters", value: "167" },
+              { label: "Cryostasis", value: "168" },
+              { label: "Cultivation", value: "169" },
+              { label: "Cunnilingus", value: "170" },
+              { label: "Cunning Protagonist", value: "171" },
+              { label: "Curious Protagonist", value: "172" },
+              { label: "Curses", value: "173" },
+              { label: "Cute Children", value: "174" },
+              { label: "Cute Protagonist", value: "175" },
+              { label: "Cute Story", value: "176" },
+              { label: "Cyberpunk 2077", value: "783" },
+              { label: "Dancers", value: "177" },
+              { label: "Dao Companion", value: "178" },
+              { label: "Dao Comprehension", value: "179" },
+              { label: "Daoism", value: "180" },
+              { label: "Dark", value: "181" },
+              { label: "Dark Fantasy", value: "789" },
+              { label: "DC Universe", value: "778" },
+              { label: "Dead Protagonist", value: "182" },
+              { label: "Death", value: "183" },
+              { label: "Death of Loved Ones", value: "184" },
+              { label: "Debts", value: "185" },
+              { label: "Delinquents", value: "186" },
+              { label: "Delusions", value: "187" },
+              { label: "Demi-Humans", value: "188" },
+              { label: "Demon Lord", value: "189" },
+              { label: "Demon Slayer", value: "812" },
+              { label: "Demonic Cultivation Technique", value: "190" },
+              { label: "Demons", value: "191" },
+              { label: "Dense Protagonist", value: "192" },
+              { label: "Depictions of Cruelty", value: "193" },
+              { label: "Depression", value: "194" },
+              { label: "Destiny", value: "195" },
+              { label: "Detective Conan", value: "804" },
+              { label: "Detectives", value: "196" },
+              { label: "Determined Protagonist", value: "197" },
+              { label: "Devoted Love Interests", value: "198" },
+              { label: "Devouring", value: "797" },
+              { label: "Different Social Status", value: "199" },
+              { label: "Disabilities", value: "200" },
+              { label: "Discrimination", value: "201" },
+              { label: "Disfigurement", value: "202" },
+              { label: "Dishonest Protagonist", value: "203" },
+              { label: "Distrustful Protagonist", value: "204" },
+              { label: "Divination", value: "205" },
+              { label: "Divine Protection", value: "206" },
+              { label: "Divorce", value: "207" },
+              { label: "DnD", value: "794" },
+              { label: "Doctors", value: "208" },
+              { label: "Dolls/Puppets", value: "209" },
+              { label: "Domestic Affairs", value: "210" },
+              { label: "Doting Love Interests", value: "211" },
+              { label: "Doting Older Siblings", value: "212" },
+              { label: "Doting Parents", value: "213" },
+              { label: "Douluo Dalu", value: "772" },
+              { label: "Dragon Ball", value: "773" },
+              { label: "Dragon Riders", value: "214" },
+              { label: "Dragon Slayers", value: "215" },
+              { label: "Dragons", value: "216" },
+              { label: "Dreams", value: "217" },
+              { label: "Drugs", value: "218" },
+              { label: "Druids", value: "219" },
+              { label: "Dungeon Master", value: "220" },
+              { label: "Dungeons", value: "221" },
+              { label: "Dwarfs", value: "222" },
+              { label: "Dystopia", value: "223" },
+              { label: "e-Sports", value: "224" },
+              { label: "Early Romance", value: "225" },
+              { label: "Earth Invasion", value: "226" },
+              { label: "Easy Going Life", value: "227" },
+              { label: "Eavesdropping", value: "798" },
+              { label: "Economics", value: "228" },
+              { label: "Editors", value: "229" },
+              { label: "Eidetic Memory", value: "230" },
+              { label: "Elderly Protagonist", value: "231" },
+              { label: "Elemental Magic", value: "232" },
+              { label: "Elves", value: "233" },
+              { label: "Emotionally Weak Protagonist", value: "234" },
+              { label: "Empires", value: "235" },
+              { label: "Enemies Become Allies", value: "236" },
+              { label: "Enemies Become Lovers", value: "237" },
+              { label: "Engagement", value: "238" },
+              { label: "Engineer", value: "239" },
+              { label: "Enlightenment", value: "240" },
+              { label: "Episodic", value: "241" },
+              { label: "Eunuch", value: "242" },
+              { label: "European Ambience", value: "243" },
+              { label: "Evil Gods", value: "244" },
+              { label: "Evil Organizations", value: "245" },
+              { label: "Evil Protagonist", value: "246" },
+              { label: "Evil Religions", value: "247" },
+              { label: "Evolution", value: "248" },
+              { label: "Exhibitionism", value: "249" },
+              { label: "Exorcism", value: "250" },
+              { label: "Eye Powers", value: "251" },
+              { label: "Fairies", value: "252" },
+              { label: "Fairy Tail", value: "814" },
+              { label: "Faith Dependent Deities", value: "808" },
+              { label: "Fallen Angels", value: "253" },
+              { label: "Fallen Nobility", value: "254" },
+              { label: "Familial Love", value: "255" },
+              { label: "Familiars", value: "256" },
+              { label: "Family", value: "257" },
+              { label: "Family Business", value: "258" },
+              { label: "Family Conflict", value: "259" },
+              { label: "Famous Parents", value: "260" },
+              { label: "Famous Protagonist", value: "261" },
+              { label: "Fanaticism", value: "262" },
+              { label: "Fanfiction", value: "263" },
+              { label: "Fantasy Creatures", value: "264" },
+              { label: "Fantasy World", value: "265" },
+              { label: "Farming", value: "266" },
+              { label: "Fast Cultivation", value: "267" },
+              { label: "Fast Learner", value: "268" },
+              { label: "Fat Protagonist", value: "269" },
+              { label: "Fat to Fit", value: "270" },
+              { label: "Fated Lovers", value: "271" },
+              { label: "Fearless Protagonist", value: "272" },
+              { label: "Fellatio", value: "273" },
+              { label: "Female Master", value: "274" },
+              { label: "Female Protagonist", value: "275" },
+              { label: "Female to Male", value: "276" },
+              { label: "Feng Shui", value: "277" },
+              { label: "Firearms", value: "278" },
+              { label: "First Love", value: "279" },
+              { label: "First-time Intercourse", value: "280" },
+              { label: "Flashbacks", value: "281" },
+              { label: "Fleet Battles", value: "282" },
+              { label: "Folklore", value: "283" },
+              { label: "Football", value: "780" },
+              { label: "Forced into a Relationship", value: "284" },
+              { label: "Forced Living Arrangements", value: "285" },
+              { label: "Forced Marriage", value: "286" },
+              { label: "Forgetful Protagonist", value: "287" },
+              { label: "Former Hero", value: "288" },
+              { label: "Fox Spirits", value: "289" },
+              { label: "Friends Become Enemies", value: "290" },
+              { label: "Friendship", value: "291" },
+              { label: "Frieren", value: "816" },
+              { label: "Fujoshi", value: "292" },
+              { label: "Futanari", value: "293" },
+              { label: "Futuristic Setting", value: "294" },
+              { label: "Galge", value: "295" },
+              { label: "Gambling", value: "296" },
+              { label: "Game Creator", value: "784" },
+              { label: "Game Elements", value: "297" },
+              { label: "Game of Thrones", value: "813" },
+              { label: "Game Ranking System", value: "298" },
+              { label: "Gamers", value: "299" },
+              { label: "Gangs", value: "300" },
+              { label: "Gao Wu", value: "781" },
+              { label: "Gate to Another World", value: "301" },
+              { label: "Genderless Protagonist", value: "302" },
+              { label: "Generals", value: "303" },
+              { label: "Genetic Modifications", value: "304" },
+              { label: "Genies", value: "305" },
+              { label: "Genius Protagonist", value: "306" },
+              { label: "Genshin Impact", value: "815" },
+              { label: "Ghosts", value: "307" },
+              { label: "Gladiators", value: "308" },
+              { label: "Glasses-wearing Love Interests", value: "309" },
+              { label: "Glasses-wearing Protagonist", value: "310" },
+              { label: "Goblins", value: "311" },
+              { label: "God Protagonist", value: "312" },
+              { label: "God-human Relationship", value: "313" },
+              { label: "Goddesses", value: "314" },
+              { label: "Godly Powers", value: "315" },
+              { label: "Gods", value: "316" },
+              { label: "Golems", value: "317" },
+              { label: "Gore", value: "318" },
+              { label: "Grave Keepers", value: "319" },
+              { label: "Grinding", value: "320" },
+              { label: "Guardian Relationship", value: "321" },
+              { label: "Guilds", value: "322" },
+              { label: "Gunfighters", value: "323" },
+              { label: "Hackers", value: "324" },
+              { label: "Half-human Protagonist", value: "325" },
+              { label: "Handjob", value: "326" },
+              { label: "Handsome Male Lead", value: "327" },
+              { label: "Hard-Working Protagonist", value: "328" },
+              { label: "Harem-seeking Protagonist", value: "329" },
+              { label: "Harry Potter", value: "768" },
+              { label: "Harsh Training", value: "330" },
+              { label: "Hated Protagonist", value: "331" },
+              { label: "Healers", value: "332" },
+              { label: "Heartwarming", value: "333" },
+              { label: "Heaven", value: "334" },
+              { label: "Heavenly Defying Comprehension", value: "803" },
+              { label: "Heavenly Tribulation", value: "335" },
+              { label: "Hell", value: "336" },
+              { label: "Helpful Protagonist", value: "337" },
+              { label: "Herbalist", value: "338" },
+              { label: "Heroes", value: "339" },
+              { label: "Heterochromia", value: "340" },
+              { label: "Hidden Abilities", value: "341" },
+              { label: "Hiding True Abilities", value: "342" },
+              { label: "Hiding True Identity", value: "343" },
+              { label: "Hikikomori", value: "344" },
+              { label: "Hollywood", value: "779" },
+              { label: "Homunculus", value: "345" },
+              { label: "Honest Protagonist", value: "346" },
+              { label: "Hong Kong", value: "821" },
+              { label: "Honghuang", value: "801" },
+              { label: "Honkai", value: "818" },
+              { label: "Hospital", value: "347" },
+              { label: "Hot-blooded Protagonist", value: "348" },
+              { label: "Human Experimentation", value: "349" },
+              { label: "Human Weapon", value: "350" },
+              { label: "Human-Nonhuman Relationship", value: "351" },
+              { label: "Humanoid Protagonist", value: "352" },
+              { label: "Hunter x Hunter", value: "777" },
+              { label: "Hunters", value: "353" },
+              { label: "Hypnotism", value: "354" },
+              { label: "Identity Crisis", value: "355" },
+              { label: "Imaginary Friend", value: "356" },
+              { label: "Immortals", value: "357" },
+              { label: "Imperial Harem", value: "358" },
+              { label: "Incest", value: "359" },
+              { label: "Incubus", value: "360" },
+              { label: "Indecisive Protagonist", value: "361" },
+              { label: "Industrialization", value: "362" },
+              { label: "Inferiority Complex", value: "363" },
+              { label: "Inheritance", value: "364" },
+              { label: "Inscriptions", value: "365" },
+              { label: "Insects", value: "366" },
+              { label: "Interconnected Storylines", value: "367" },
+              { label: "Interdimensional Travel", value: "368" },
+              { label: "Introverted Protagonist", value: "369" },
+              { label: "Investigations", value: "370" },
+              { label: "Invisibility", value: "371" },
+              { label: "Jack of All Trades", value: "372" },
+              { label: "Jealousy", value: "373" },
+              { label: "Jiangshi", value: "374" },
+              { label: "Jobless Class", value: "375" },
+              { label: "Journey to the West", value: "796" },
+              { label: "JSDF", value: "376" },
+              { label: "Jujutsu Kaisen", value: "776" },
+              { label: "Kidnappings", value: "377" },
+              { label: "Kimetsu no Yaiba", value: "805" },
+              { label: "Kind Love Interests", value: "378" },
+              { label: "Kingdom Building", value: "379" },
+              { label: "Kingdoms", value: "380" },
+              { label: "Knights", value: "381" },
+              { label: "Kuudere", value: "382" },
+              { label: "Lack of Common Sense", value: "383" },
+              { label: "Language Barrier", value: "384" },
+              { label: "Late Romance", value: "385" },
+              { label: "Lawyers", value: "386" },
+              { label: "Lazy Protagonist", value: "387" },
+              { label: "Leadership", value: "388" },
+              { label: "League of Legends", value: "791" },
+              { label: "Legends", value: "389" },
+              { label: "Level System", value: "390" },
+              { label: "Library", value: "391" },
+              { label: "Life Script", value: "824" },
+              { label: "Limited Lifespan", value: "392" },
+              { label: "Live Streaming", value: "782" },
+              { label: "Living Abroad", value: "393" },
+              { label: "Living Alone", value: "394" },
+              { label: "Loli", value: "395" },
+              { label: "Loneliness", value: "396" },
+              { label: "Loner Protagonist", value: "397" },
+              { label: "Long Separations", value: "398" },
+              { label: "Long-distance Relationship", value: "399" },
+              { label: "Lord", value: "823" },
+              { label: "Lord of the Mysteries", value: "799" },
+              { label: "Lost Civilizations", value: "400" },
+              { label: "Lottery", value: "401" },
+              { label: "Love at First Sight", value: "402" },
+              { label: "Love Interest Falls in Love First", value: "403" },
+              { label: "Love Rivals", value: "404" },
+              { label: "Love Triangles", value: "405" },
+              { label: "Lovers Reunited", value: "406" },
+              { label: "Low-key Protagonist", value: "407" },
+              { label: "Loyal Subordinates", value: "408" },
+              { label: "Lucky Protagonist", value: "409" },
+              { label: "Magic", value: "410" },
+              { label: "Magic Beasts", value: "411" },
+              { label: "Magic Formations", value: "412" },
+              { label: "Magical Girls", value: "413" },
+              { label: "Magical Space", value: "414" },
+              { label: "Magical Technology", value: "415" },
+              { label: "Maids", value: "416" },
+              { label: "Male Protagonist", value: "417" },
+              { label: "Male to Female", value: "418" },
+              { label: "Male Yandere", value: "419" },
+              { label: "Management", value: "420" },
+              { label: "Mangaka", value: "421" },
+              { label: "Manipulative Characters", value: "422" },
+              { label: "Manly Gay Couple", value: "423" },
+              { label: "Marriage", value: "424" },
+              { label: "Marriage of Convenience", value: "425" },
+              { label: "Martial Spirits", value: "426" },
+              { label: "Marvel", value: "766" },
+              { label: "Masochistic Characters", value: "427" },
+              { label: "Master-Disciple Relationship", value: "428" },
+              { label: "Master-Servant Relationship", value: "429" },
+              { label: "Masturbation", value: "430" },
+              { label: "Matriarchy", value: "431" },
+              { label: "Mature Protagonist", value: "432" },
+              { label: "Medical Knowledge", value: "433" },
+              { label: "Medieval", value: "434" },
+              { label: "Mercenaries", value: "435" },
+              { label: "Merchants", value: "436" },
+              { label: "Military", value: "437" },
+              { label: "Mind Break", value: "438" },
+              { label: "Mind Control", value: "439" },
+              { label: "Minecraft", value: "790" },
+              { label: "Misandry", value: "440" },
+              { label: "Mismatched Couple", value: "441" },
+              { label: "Misunderstandings", value: "442" },
+              { label: "MMORPG", value: "443" },
+              { label: "Mob Protagonist", value: "444" },
+              { label: "Models", value: "445" },
+              { label: "Modern Day", value: "446" },
+              { label: "Modern Knowledge", value: "447" },
+              { label: "Money Grubber", value: "448" },
+              { label: "Monster Girls", value: "449" },
+              { label: "Monster Society", value: "450" },
+              { label: "Monster Tamer", value: "451" },
+              { label: "Monsters", value: "452" },
+              { label: "More Children More Blessings", value: "825" },
+              { label: "Mortal Flow", value: "792" },
+              { label: "Movies", value: "453" },
+              { label: "Mpreg", value: "454" },
+              { label: "Multiple Identities", value: "455" },
+              { label: "Multiple Personalities", value: "456" },
+              { label: "Multiple POV", value: "457" },
+              { label: "Multiple Protagonists", value: "458" },
+              { label: "Multiple Realms", value: "459" },
+              { label: "Multiple Reincarnated Individuals", value: "460" },
+              { label: "Multiple Timelines", value: "461" },
+              { label: "Multiple Transported Individuals", value: "462" },
+              { label: "Murders", value: "463" },
+              { label: "Music", value: "464" },
+              { label: "Mutated Creatures", value: "465" },
+              { label: "Mutations", value: "466" },
+              { label: "Mute Character", value: "467" },
+              { label: "Mysterious Family Background", value: "468" },
+              { label: "Mysterious Illness", value: "469" },
+              { label: "Mysterious Past", value: "470" },
+              { label: "Mystery Solving", value: "471" },
+              { label: "Mythical Beasts", value: "472" },
+              { label: "Mythology", value: "473" },
+              { label: "Naive Protagonist", value: "474" },
+              { label: "Narcissistic Protagonist", value: "475" },
+              { label: "Naruto", value: "769" },
+              { label: "Nationalism", value: "476" },
+              { label: "Near-Death Experience", value: "477" },
+              { label: "Necromancer", value: "478" },
+              { label: "Neet", value: "479" },
+              { label: "Netorare", value: "480" },
+              { label: "Netorase", value: "481" },
+              { label: "Netori", value: "482" },
+              { label: "Nightmares", value: "483" },
+              { label: "Ninjas", value: "484" },
+              { label: "Nobles", value: "485" },
+              { label: "Non-humanoid Protagonist", value: "486" },
+              { label: "Non-linear Storytelling", value: "487" },
+              { label: "Nudity", value: "488" },
+              { label: "Nurses", value: "489" },
+              { label: "Obsessive Love", value: "490" },
+              { label: "Office Romance", value: "491" },
+              { label: "Older Love Interests", value: "492" },
+              { label: "Omegaverse", value: "493" },
+              { label: "One Piece", value: "767" },
+              { label: "Oneshot", value: "494" },
+              { label: "Online Romance", value: "495" },
+              { label: "Onmyouji", value: "496" },
+              { label: "Orcs", value: "497" },
+              { label: "Organized Crime", value: "498" },
+              { label: "Orgy", value: "499" },
+              { label: "Orphans", value: "500" },
+              { label: "Otaku", value: "501" },
+              { label: "Otome Game", value: "502" },
+              { label: "Outcasts", value: "503" },
+              { label: "Outdoor Intercourse", value: "504" },
+              { label: "Outer Space", value: "505" },
+              { label: "Overlord", value: "826" },
+              { label: "Overpowered Protagonist", value: "506" },
+              { label: "Overprotective Siblings", value: "507" },
+              { label: "Pacifist Protagonist", value: "508" },
+              { label: "Paizuri", value: "509" },
+              { label: "Parallel Worlds", value: "510" },
+              { label: "Parasites", value: "511" },
+              { label: "Parent Complex", value: "512" },
+              { label: "Parody", value: "513" },
+              { label: "Part-Time Job", value: "514" },
+              { label: "Past Plays a Big Role", value: "515" },
+              { label: "Past Trauma", value: "516" },
+              { label: "Persistent Love Interests", value: "517" },
+              { label: "Personality Changes", value: "518" },
+              { label: "Perverted Protagonist", value: "519" },
+              { label: "Pets", value: "520" },
+              { label: "Pharmacist", value: "521" },
+              { label: "Philosophical", value: "522" },
+              { label: "Phobias", value: "523" },
+              { label: "Phoenixes", value: "524" },
+              { label: "Photography", value: "525" },
+              { label: "Pill Based Cultivation", value: "526" },
+              { label: "Pill Concocting", value: "527" },
+              { label: "Pilots", value: "528" },
+              { label: "Pirates", value: "529" },
+              { label: "Playboys", value: "530" },
+              { label: "Playful Protagonist", value: "531" },
+              { label: "Poetry", value: "532" },
+              { label: "Poisons", value: "533" },
+              { label: "Pokemon", value: "771" },
+              { label: "Police", value: "534" },
+              { label: "Polite Protagonist", value: "535" },
+              { label: "Politics", value: "536" },
+              { label: "Polyandry", value: "537" },
+              { label: "Polygamy", value: "538" },
+              { label: "Poor Protagonist", value: "539" },
+              { label: "Poor to Rich", value: "540" },
+              { label: "Popular Love Interests", value: "541" },
+              { label: "Possession", value: "542" },
+              { label: "Possessive Characters", value: "543" },
+              { label: "Post-apocalyptic", value: "544" },
+              { label: "Power Couple", value: "545" },
+              { label: "Power Struggle", value: "546" },
+              { label: "Pragmatic Protagonist", value: "547" },
+              { label: "Precognition", value: "548" },
+              { label: "Pregnancy", value: "549" },
+              { label: "Pretend Lovers", value: "550" },
+              { label: "Previous Life Talent", value: "551" },
+              { label: "Priestesses", value: "552" },
+              { label: "Priests", value: "553" },
+              { label: "Prison", value: "554" },
+              { label: "Proactive Protagonist", value: "555" },
+              { label: "Proficiency", value: "793" },
+              { label: "Programmer", value: "556" },
+              { label: "Prophecies", value: "557" },
+              { label: "Prostitutes", value: "558" },
+              { label: "Protagonist Falls in Love First", value: "559" },
+              { label: "Protagonist Strong from the Start", value: "560" },
+              { label: "Protagonist with Multiple Bodies", value: "561" },
+              { label: "Psychic Powers", value: "562" },
+              { label: "Psychopaths", value: "563" },
+              { label: "Puppeteers", value: "564" },
+              { label: "Quiet Characters", value: "565" },
+              { label: "Quirky Characters", value: "566" },
+              { label: "R-15", value: "567" },
+              { label: "R-18", value: "568" },
+              { label: "Race Change", value: "569" },
+              { label: "Racism", value: "570" },
+              { label: "Rape", value: "571" },
+              { label: "Rape Victim Becomes Lover", value: "572" },
+              { label: "Reality-Game Fusion", value: "830" },
+              { label: "Rebellion", value: "573" },
+              { label: "Reborn", value: "829" },
+              { label: "Reborn as the Villain", value: "831" },
+              { label: "Reincarnated as a Monster", value: "574" },
+              { label: "Reincarnated as an Object", value: "575" },
+              { label: "Reincarnated in a Game World", value: "576" },
+              { label: "Reincarnated in Another World", value: "577" },
+              { label: "Reincarnation", value: "578" },
+              { label: "Religions", value: "579" },
+              { label: "Reluctant Protagonist", value: "580" },
+              { label: "Reporters", value: "581" },
+              { label: "Restaurant", value: "582" },
+              { label: "Resurrection", value: "583" },
+              { label: "Returning from Another World", value: "584" },
+              { label: "Revenge", value: "585" },
+              { label: "Reverse Harem", value: "586" },
+              { label: "Reverse Rape", value: "587" },
+              { label: "Reversible Couple", value: "588" },
+              { label: "Rich to Poor", value: "589" },
+              { label: "Righteous Protagonist", value: "590" },
+              { label: "Rivalry", value: "591" },
+              { label: "Romantic Subplot", value: "592" },
+              { label: "Roommates", value: "593" },
+              { label: "Royalty", value: "594" },
+              { label: "Ruthless Protagonist", value: "595" },
+              { label: "Sadistic Characters", value: "596" },
+              { label: "Saints", value: "597" },
+              { label: "Salaryman", value: "598" },
+              { label: "Samurai", value: "599" },
+              { label: "Saving the World", value: "600" },
+              { label: "Schemes And Conspiracies", value: "601" },
+              { label: "Schizophrenia", value: "602" },
+              { label: "Scientists", value: "603" },
+              { label: "Sculptors", value: "604" },
+              { label: "Sealed Power", value: "605" },
+              { label: "Second Chance", value: "606" },
+              { label: "Secret Crush", value: "607" },
+              { label: "Secret Identity", value: "608" },
+              { label: "Secret Organizations", value: "609" },
+              { label: "Secret Relationship", value: "610" },
+              { label: "Secretive Protagonist", value: "611" },
+              { label: "Secrets", value: "612" },
+              { label: "Sect Development", value: "613" },
+              { label: "Seduction", value: "614" },
+              { label: "Seeing Things Other Humans Can't", value: "615" },
+              { label: "Selfish Protagonist", value: "616" },
+              { label: "Selfless Protagonist", value: "617" },
+              { label: "Seme Protagonist", value: "618" },
+              { label: "Senpai-Kouhai Relationship", value: "619" },
+              { label: "Sentient Objects", value: "620" },
+              { label: "Sentimental Protagonist", value: "621" },
+              { label: "Serial Killers", value: "622" },
+              { label: "Servants", value: "623" },
+              { label: "Seven Deadly Sins", value: "624" },
+              { label: "Seven Virtues", value: "625" },
+              { label: "Sex Friends", value: "626" },
+              { label: "Sex Slaves", value: "627" },
+              { label: "Sexual Abuse", value: "628" },
+              { label: "Sexual Cultivation Technique", value: "629" },
+              { label: "Shameless Protagonist", value: "630" },
+              { label: "Shapeshifters", value: "631" },
+              { label: "Sharing A Body", value: "632" },
+              { label: "Sharp-tongued Characters", value: "633" },
+              { label: "Shield User", value: "634" },
+              { label: "Shikigami", value: "635" },
+              { label: "Short Story", value: "636" },
+              { label: "Shota", value: "637" },
+              { label: "Shoujo-Ai Subplot", value: "638" },
+              { label: "Shounen-Ai Subplot", value: "639" },
+              { label: "Showbiz", value: "640" },
+              { label: "Shy Characters", value: "641" },
+              { label: "Sibling Rivalry", value: "642" },
+              { label: "Sibling's Care", value: "643" },
+              { label: "Siblings", value: "644" },
+              { label: "Siblings Not Related by Blood", value: "645" },
+              { label: "Sickly Characters", value: "646" },
+              { label: "Sign In", value: "811" },
+              { label: "Sign Language", value: "647" },
+              { label: "Siheyuan", value: "820" },
+              { label: "Simulator", value: "786" },
+              { label: "Singers", value: "648" },
+              { label: "Single Female Lead", value: "787" },
+              { label: "Single Parent", value: "649" },
+              { label: "Sister Complex", value: "650" },
+              { label: "Skill Assimilation", value: "651" },
+              { label: "Skill Books", value: "652" },
+              { label: "Skill Creation", value: "653" },
+              { label: "Slave Harem", value: "654" },
+              { label: "Slave Protagonist", value: "655" },
+              { label: "Slaves", value: "656" },
+              { label: "Sleeping", value: "657" },
+              { label: "Slow Growth at Start", value: "658" },
+              { label: "Slow Romance", value: "659" },
+              { label: "Smart Couple", value: "660" },
+              { label: "Social Outcasts", value: "661" },
+              { label: "Soldiers", value: "662" },
+              { label: "Soul Power", value: "663" },
+              { label: "Souls", value: "664" },
+              { label: "Spatial Manipulation", value: "665" },
+              { label: "Spear Wielder", value: "666" },
+              { label: "Special Abilities", value: "667" },
+              { label: "Spies", value: "668" },
+              { label: "Spirit Advisor", value: "669" },
+              { label: "Spirit Users", value: "670" },
+              { label: "Spirits", value: "671" },
+              { label: "Spiritual Energy Revival", value: "828" },
+              { label: "Stalkers", value: "672" },
+              { label: "Star Wars", value: "817" },
+              { label: "Stockholm Syndrome", value: "673" },
+              { label: "Stoic Characters", value: "674" },
+              { label: "Store Owner", value: "675" },
+              { label: "Straight Seme", value: "676" },
+              { label: "Straight Uke", value: "677" },
+              { label: "Strategic Battles", value: "678" },
+              { label: "Strategist", value: "679" },
+              { label: "Strength-based Social Hierarchy", value: "680" },
+              { label: "Strong Love Interests", value: "681" },
+              { label: "Strong to Stronger", value: "682" },
+              { label: "Stubborn Protagonist", value: "683" },
+              { label: "Student Council", value: "684" },
+              { label: "Student-Teacher Relationship", value: "685" },
+              { label: "Succubus", value: "686" },
+              { label: "Sudden Strength Gain", value: "687" },
+              { label: "Sudden Wealth", value: "688" },
+              { label: "Suicides", value: "689" },
+              { label: "Summoned Hero", value: "690" },
+              { label: "Summoning Magic", value: "691" },
+              { label: "Survival", value: "692" },
+              { label: "Survival Game", value: "693" },
+              { label: "Swallowed Star", value: "785" },
+              { label: "Sword And Magic", value: "694" },
+              { label: "Sword Wielder", value: "695" },
+              { label: "System", value: "696" },
+              { label: "Teachers", value: "697" },
+              { label: "Teamwork", value: "698" },
+              { label: "Technological Gap", value: "699" },
+              { label: "Tentacles", value: "700" },
+              { label: "Terminal Illness", value: "701" },
+              { label: "Territory Management", value: "802" },
+              { label: "Terrorists", value: "702" },
+              { label: "Thieves", value: "703" },
+              { label: "Three Kingdoms", value: "795" },
+              { label: "Threesome", value: "704" },
+              { label: "Thriller", value: "705" },
+              { label: "Time Loop", value: "706" },
+              { label: "Time Manipulation", value: "707" },
+              { label: "Time Paradox", value: "708" },
+              { label: "Time Skip", value: "709" },
+              { label: "Time Travel", value: "710" },
+              { label: "Timid Protagonist", value: "711" },
+              { label: "Tomboyish Female Lead", value: "712" },
+              { label: "Torture", value: "713" },
+              { label: "Toys", value: "714" },
+              { label: "Tragic Past", value: "715" },
+              { label: "Transformation Ability", value: "716" },
+              { label: "Transmigration", value: "717" },
+              { label: "Transplanted Memories", value: "718" },
+              { label: "Transported into a Game World", value: "719" },
+              { label: "Transported Modern Structure", value: "720" },
+              { label: "Transported to Another World", value: "721" },
+              { label: "Trap", value: "722" },
+              { label: "Tribal Society", value: "723" },
+              { label: "Trickster", value: "724" },
+              { label: "Tsundere", value: "725" },
+              { label: "Twins", value: "726" },
+              { label: "Twisted Personality", value: "727" },
+              { label: "Ugly Protagonist", value: "728" },
+              { label: "Ugly to Beautiful", value: "729" },
+              { label: "Unconditional Love", value: "730" },
+              { label: "Undead Protagonist", value: "810" },
+              { label: "Underestimated Protagonist", value: "731" },
+              { label: "Unique Cultivation Technique", value: "732" },
+              { label: "Unique Weapon User", value: "733" },
+              { label: "Unique Weapons", value: "734" },
+              { label: "Unlimited Flow", value: "735" },
+              { label: "Unlucky Protagonist", value: "736" },
+              { label: "Unreliable Narrator", value: "737" },
+              { label: "Unrequited Love", value: "738" },
+              { label: "Valkyries", value: "739" },
+              { label: "Vampires", value: "740" },
+              { label: "Villainess Noble Girls", value: "741" },
+              { label: "Virtual Reality", value: "742" },
+              { label: "Vocaloid", value: "743" },
+              { label: "Voice Actors", value: "744" },
+              { label: "Voyeurism", value: "745" },
+              { label: "Waiters", value: "746" },
+              { label: "War Records", value: "747" },
+              { label: "Warhammer", value: "775" },
+              { label: "Wars", value: "748" },
+              { label: "Weak Protagonist", value: "749" },
+              { label: "Weak to Strong", value: "750" },
+              { label: "Wealthy Characters", value: "751" },
+              { label: "Werebeasts", value: "752" },
+              { label: "Western Names", value: "788" },
+              { label: "Wishes", value: "753" },
+              { label: "Witcher", value: "819" },
+              { label: "Witches", value: "754" },
+              { label: "Wizards", value: "755" },
+              { label: "World Hopping", value: "756" },
+              { label: "World Travel", value: "757" },
+              { label: "World Tree", value: "758" },
+              { label: "Writers", value: "759" },
+              { label: "Yandere", value: "760" },
+              { label: "Youkai", value: "761" },
+              { label: "Younger Brothers", value: "762" },
+              { label: "Younger Love Interests", value: "763" },
+              { label: "Younger Sisters", value: "764" },
+              { label: "Yu-Gi-Oh!", value: "774" },
+              { label: "Zombies", value: "765" },
+            ],
+          },
+          folders: {
+            value: "",
+            label: "Library Folders",
+            options: [
+              { label: "No Filter", value: "" },
+              { label: "Reading", value: "1" },
+              { label: "Read Later", value: "2" },
+              { label: "Completed", value: "3" },
+              { label: "Trash", value: "5" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+          library_exclude: {
+            value: "",
+            label: "Library Exclude",
+            options: [
+              { label: "None", value: "" },
+              { label: "Exclude All", value: "history" },
+              { label: "Exclude Trash", value: "trash" },
+              { label: "Exclude Library & Trash", value: "in_library" },
+            ],
+            type: r.FilterTypes.Picker,
+          },
+        }));
     }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var cheerio_1 = require("cheerio");
-var fetch_1 = require("@libs/fetch");
-var sanitize_html_1 = __importDefault(require("sanitize-html"));
-var aes_1 = require("@noble/ciphers/aes");
-var storage_1 = require("@libs/storage");
-var WTRLAB = /** @class */ (function () {
-    function WTRLAB() {
-        this.id = 'WTRLAB_AR';
-        this.name = 'WTR-LAB (Arabic)';
-        this.icon = 'src/ar/wtrlab/icon.png';
-        this.site = 'https://wtr-lab.com/';
-        this.version = '1.2.4';
-        this.hasCustomSettings = true;
-        this.sourceLang = 'en/';
-        this.baggage = '';
-        this.trace = '';
-        this.novelGlossary = {};
-        this.chapterListCache = new Map();
-    }
-    Object.defineProperty(WTRLAB.prototype, "translationModes", {
+    return (
+      Object.defineProperty(o.prototype, "sessionCookie", {
         get: function () {
-            var saved = storage_1.storage.get(WTRLAB.SETTING_TRANSLATION_MODES);
-            if (Array.isArray(saved) && saved.length > 0) {
-                return saved;
+          return (i.storage.get("sessionCookie") || "").trim();
+        },
+        enumerable: !1,
+        configurable: !0,
+      }),
+      (o.prototype.ensureSignedIn = function () {
+        return l(this, void 0, void 0, function () {
+          var e, l, r, u, n, o, s;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                if (
+                  !(e = (i.storage.get("signInUrl") || "").trim()) ||
+                  this.signInAttempted
+                )
+                  return [2, null];
+                if (
+                  ((this.signInAttempted = !0),
+                  /^[a-z]+:\/\//i.test(e) &&
+                    !/^https:\/\/([a-z0-9-]+\.)*wtr-lab\.com\//i.test(e))
+                )
+                  return [
+                    2,
+                    "Sign-in link ignored â€” it is not an https wtr-lab.com address.",
+                  ];
+                if (
+                  ((l = ""),
+                  (r = e.match(/[?&]token=([^&\s]+)/))
+                    ? (l = decodeURIComponent(r[1]))
+                    : /^[A-Za-z0-9_.-]{16,}$/.test(e) && (l = e),
+                  !l)
+                )
+                  return [
+                    2,
+                    'Sign-in link ignored â€” no token found. Paste the whole link from the email (it contains "token=").',
+                  ];
+                ((u = ""
+                  .concat(this.site, "api/auth/magic-link/verify?token=")
+                  .concat(encodeURIComponent(l), "&callbackURL=/")),
+                  (a.label = 1));
+              case 1:
+                return (
+                  a.trys.push([1, 3, , 4]),
+                  [
+                    4,
+                    (0, t.fetchApi)(u, {
+                      headers: {
+                        Accept: "application/json,text/html,*/*",
+                        Referer: this.site,
+                      },
+                    }),
+                  ]
+                );
+              case 2:
+                return (
+                  (n = a.sent()),
+                  (o = (n.url || "").replace(this.site, "/") || "unknown"),
+                  [
+                    2,
+                    "Sign-in: redeem token HTTP "
+                      .concat(n.status, ", ended at ")
+                      .concat(o),
+                  ]
+                );
+              case 3:
+                return (
+                  (s = a.sent()),
+                  [2, "Sign-in failed: ".concat(String(s))]
+                );
+              case 4:
+                return [2];
             }
-            return __spreadArray([], WTRLAB.ALL_TRANSLATION_MODES, true);
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(WTRLAB.prototype, "sessionCookie", {
-        get: function () {
-            return storage_1.storage.get(WTRLAB.SETTING_SESSION_COOKIE) || '';
-        },
-        enumerable: false,
-        configurable: true
-    });
-    WTRLAB.prototype.popularNovels = function (page_1, _a) {
-        return __awaiter(this, arguments, void 0, function (page, _b) {
-            var link, params, _i, _c, _d, key, value, response, recentNovel, novels, buildId, homePage, homeCheerio, homeNextData, e_1, finderPage, finderCheerio, nextData, e_2, response, json, seenIds_1, novels;
-            var showLatestNovels = _b.showLatestNovels, filters = _b.filters;
-            return __generator(this, function (_e) {
-                switch (_e.label) {
-                    case 0:
-                        link = "".concat(this.site, "en/novel-list?");
-                        params = new URLSearchParams({ page: page.toString() });
-                        if (filters) {
-                            for (_i = 0, _c = Object.entries(filters); _i < _c.length; _i++) {
-                                _d = _c[_i], key = _d[0], value = _d[1];
-                                if (typeof value === 'object') {
-                                    if (value.value.length > 0) {
-                                        params.append(key, value.value.join(','));
-                                    }
-                                }
-                                else if (value) {
-                                    params.append(key, value.toString());
-                                }
-                            }
-                        }
-                        if (!showLatestNovels) return [3 /*break*/, 3];
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "api/recent-chapters"), {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ page: page }),
-                            })];
-                    case 1:
-                        response = _e.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        recentNovel = _e.sent();
-                        novels = recentNovel.data.map(function (datum) { return ({
-                            name: datum.serie.data.title || datum.serie.slug || '',
-                            cover: datum.serie.data.image,
-                            path: "en/serie-".concat(datum.serie.raw_id, "/").concat(datum.serie.slug || ''),
-                        }); });
-                        return [2 /*return*/, novels];
-                    case 3:
-                        buildId = '';
-                        _e.label = 4;
-                    case 4:
-                        _e.trys.push([4, 6, , 7]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)(this.site).then(function (res) { return res.text(); })];
-                    case 5:
-                        homePage = _e.sent();
-                        homeCheerio = (0, cheerio_1.load)(homePage);
-                        homeNextData = homeCheerio('#__NEXT_DATA__').html();
-                        if (homeNextData) {
-                            buildId = JSON.parse(homeNextData).buildId;
-                        }
-                        return [3 /*break*/, 7];
-                    case 6:
-                        e_1 = _e.sent();
-                        return [3 /*break*/, 7];
-                    case 7:
-                        if (!!buildId) return [3 /*break*/, 11];
-                        _e.label = 8;
-                    case 8:
-                        _e.trys.push([8, 10, , 11]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "en/novel-finder")).then(function (res) { return res.text(); })];
-                    case 9:
-                        finderPage = _e.sent();
-                        finderCheerio = (0, cheerio_1.load)(finderPage);
-                        nextData = finderCheerio('#__NEXT_DATA__').html();
-                        if (nextData) {
-                            buildId = JSON.parse(nextData).buildId;
-                        }
-                        return [3 /*break*/, 11];
-                    case 10:
-                        e_2 = _e.sent();
-                        return [3 /*break*/, 11];
-                    case 11:
-                        if (!buildId) {
-                            buildId = 'pMQOddAuT2HrrQ64E0YKu';
-                        }
-                        link = "".concat(this.site, "_next/data/").concat(buildId, "/en/novel-finder.json?").concat(params.toString());
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)(link)];
-                    case 12:
-                        response = _e.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 13:
-                        json = _e.sent();
-                        seenIds_1 = new Set();
-                        novels = json.pageProps.series
-                            .filter(function (novel) {
-                            if (seenIds_1.has(novel.raw_id)) {
-                                return false;
-                            }
-                            seenIds_1.add(novel.raw_id);
-                            return true;
-                        })
-                            .map(function (novel) { return ({
-                            name: novel.data.title,
-                            cover: novel.data.image,
-                            path: "en/serie-".concat(novel.raw_id, "/").concat(novel.slug),
-                        }); });
-                        return [2 /*return*/, novels];
-                }
-            });
+          });
         });
-    };
-    WTRLAB.prototype.parseNovel = function (novelPath) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cleanPath, url, body, loadedCheerio, nextDataElement, nextDataText, rawId, slug, novel, jsonData, serieData, match, _a;
-            var _b, _c, _d, _e, _f, _g, _h, _j;
-            return __generator(this, function (_k) {
-                switch (_k.label) {
-                    case 0:
-                        cleanPath = novelPath.replace(/^\/?(?:en|ar)\//, '');
-                        url = "".concat(this.site, "en/").concat(cleanPath);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url).then(function (res) { return res.text(); })];
-                    case 1:
-                        body = _k.sent();
-                        loadedCheerio = (0, cheerio_1.load)(body);
-                        nextDataElement = loadedCheerio('#__NEXT_DATA__');
-                        nextDataText = nextDataElement.html();
-                        rawId = null;
-                        slug = null;
-                        novel = {
-                            path: "en/".concat(cleanPath),
-                            name: loadedCheerio('h1.text-uppercase').text().trim(),
-                            summary: loadedCheerio('.lead').text().trim(),
-                        };
-                        if (nextDataText) {
-                            try {
-                                jsonData = JSON.parse(nextDataText);
-                                serieData = (_d = (_c = (_b = jsonData === null || jsonData === void 0 ? void 0 : jsonData.props) === null || _b === void 0 ? void 0 : _b.pageProps) === null || _c === void 0 ? void 0 : _c.serie) === null || _d === void 0 ? void 0 : _d.serie_data;
-                                if (serieData) {
-                                    novel.name = ((_e = serieData.data) === null || _e === void 0 ? void 0 : _e.title) || novel.name;
-                                    novel.cover = ((_f = serieData.data) === null || _f === void 0 ? void 0 : _f.image) || '';
-                                    novel.summary = ((_g = serieData.data) === null || _g === void 0 ? void 0 : _g.description) || novel.summary;
-                                    novel.author = ((_h = serieData.data) === null || _h === void 0 ? void 0 : _h.author) || '';
-                                    rawId = serieData.raw_id || null;
-                                    slug = serieData.slug || null;
-                                    if ((_j = serieData.data) === null || _j === void 0 ? void 0 : _j.tags) {
-                                        novel.genres = serieData.data.tags.join(', ');
-                                    }
-                                }
-                            }
-                            catch (e) { }
-                        }
-                        if (!rawId || !slug) {
-                            match = cleanPath.match(/serie-(\d+)\/([^/]+)/);
-                            if (match) {
-                                rawId = parseInt(match[1], 10);
-                                slug = match[2];
-                            }
-                        }
-                        if (!(rawId && slug)) return [3 /*break*/, 3];
-                        _a = novel;
-                        return [4 /*yield*/, this.fetchAllChapters(rawId, slug)];
-                    case 2:
-                        _a.chapters = _k.sent();
-                        this.chapterListCache.set(rawId, novel.chapters);
-                        return [3 /*break*/, 4];
-                    case 3:
-                        novel.chapters = [];
-                        _k.label = 4;
-                    case 4: return [2 /*return*/, novel];
-                }
-            });
-        });
-    };
-    WTRLAB.prototype.fetchTokens = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, e_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "en"))];
-                    case 1:
-                        response = _a.sent();
-                        this.baggage = response.headers.get('baggage') || '';
-                        this.trace = response.headers.get('sentry-trace') || '';
-                        return [3 /*break*/, 3];
-                    case 2:
-                        e_3 = _a.sent();
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    WTRLAB.prototype.decrypt = function (encrypted, encKey) {
-        return __awaiter(this, void 0, void 0, function () {
-            var t, u, r, _a, iv, tag, ciphertext, combined, keyBytes, aes, decrypted, m;
-            return __generator(this, function (_b) {
+      }),
+      (o.prototype.checkSession = function () {
+        return l(this, void 0, void 0, function () {
+          var l, r, u, n, i, o, s, v, b, c, d;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                return (
+                  a.trys.push([0, 3, , 4]),
+                  (l = this.sessionCookie),
+                  [
+                    4,
+                    (0, t.fetchApi)(
+                      "".concat(this.site, "api/auth/get-session"),
+                      {
+                        headers: e(
+                          { Accept: "application/json" },
+                          l ? { Cookie: l } : {},
+                        ),
+                      },
+                    ),
+                  ]
+                );
+              case 1:
+                return [4, (r = a.sent()).text()];
+              case 2:
+                ((u = a.sent()), (n = null));
                 try {
-                    t = false;
-                    u = encrypted;
-                    if (encrypted.startsWith('arr:')) {
-                        t = true;
-                        u = encrypted.substring(4);
-                    }
-                    else if (encrypted.startsWith('str:')) {
-                        u = encrypted.substring(4);
-                    }
-                    r = u.split(':');
-                    if (r.length !== 3)
-                        throw new Error('Invalid encrypted data format');
-                    _a = r.map(function (part) {
-                        return Uint8Array.from(atob(part), function (e) { return e.charCodeAt(0); });
-                    }), iv = _a[0], tag = _a[1], ciphertext = _a[2];
-                    combined = new Uint8Array(ciphertext.length + tag.length);
-                    combined.set(ciphertext);
-                    combined.set(tag, ciphertext.length);
-                    keyBytes = new TextEncoder().encode(encKey.slice(0, 32));
-                    aes = (0, aes_1.gcm)(keyBytes, iv);
-                    decrypted = aes.decrypt(combined);
-                    m = new TextDecoder().decode(decrypted);
-                    if (t)
-                        return [2 /*return*/, JSON.parse(m)];
-                    return [2 /*return*/, m];
+                  n = JSON.parse(u);
+                } catch (e) {
+                  n = null;
                 }
-                catch (error) {
-                    return [2 /*return*/, { error: "<p>Decryption error: ".concat(error, "</p>") }];
-                }
-                return [2 /*return*/];
-            });
+                return "string" ==
+                  typeof (i =
+                    (null == n ? void 0 : n.user) ||
+                    (null === (v = null == n ? void 0 : n.session) ||
+                    void 0 === v
+                      ? void 0
+                      : v.user) ||
+                    (null === (b = null == n ? void 0 : n.data) || void 0 === b
+                      ? void 0
+                      : b.user) ||
+                    (null ===
+                      (d =
+                        null === (c = null == n ? void 0 : n.session) ||
+                        void 0 === c
+                          ? void 0
+                          : c.session) || void 0 === d
+                      ? void 0
+                      : d.user)) && i
+                  ? [2, "signed in (".concat(i, ")")]
+                  : i && "object" == typeof i
+                    ? [
+                        2,
+                        (o =
+                          i.user_name ||
+                          i.name ||
+                          i.username ||
+                          i.email ||
+                          i.id ||
+                          "")
+                          ? "signed in as ".concat(o)
+                          : "signed in",
+                      ]
+                    : [
+                        2,
+                        "NOT signed in (get-session HTTP "
+                          .concat(r.status, ": ")
+                          .concat(
+                            u
+                              .slice(0, 60)
+                              .replace(/<[^>]*>/g, " ")
+                              .trim() || "empty response",
+                            ")",
+                          ),
+                      ];
+              case 3:
+                return (
+                  (s = a.sent()),
+                  [2, "session check failed: ".concat(String(s))]
+                );
+              case 4:
+                return [2];
+            }
+          });
         });
-    };
-    WTRLAB.prototype.getKey = function ($) {
-        return __awaiter(this, void 0, void 0, function () {
-            var searchKey, code, index, scripts, URLs, _i, scripts_1, el, src, _a, URLs_1, src, scriptUrl, raw, e_4, home, scriptMatch, _b, scriptMatch_1, s, url, raw, e_5;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        searchKey = 'TextEncoder().encode("';
-                        index = -1;
-                        if (!$) return [3 /*break*/, 6];
-                        scripts = $('head').find('script').toArray();
-                        URLs = [];
-                        for (_i = 0, scripts_1 = scripts; _i < scripts_1.length; _i++) {
-                            el = scripts_1[_i];
-                            src = $(el).attr('src');
-                            if (!src || URLs.includes(src))
-                                continue;
-                            URLs.push(src);
-                        }
-                        _a = 0, URLs_1 = URLs;
-                        _c.label = 1;
-                    case 1:
-                        if (!(_a < URLs_1.length)) return [3 /*break*/, 6];
-                        src = URLs_1[_a];
-                        _c.label = 2;
-                    case 2:
-                        _c.trys.push([2, 4, , 5]);
-                        scriptUrl = src.startsWith('http') ? src : "".concat(this.site).concat(src.replace(/^\//, ''));
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)(scriptUrl).then(function (res) { return res.text(); })];
-                    case 3:
-                        raw = _c.sent();
-                        index = raw.indexOf(searchKey);
-                        if (index >= 0) {
-                            code = raw;
-                            return [3 /*break*/, 6];
-                        }
-                        return [3 /*break*/, 5];
-                    case 4:
-                        e_4 = _c.sent();
-                        return [3 /*break*/, 5];
-                    case 5:
-                        _a++;
-                        return [3 /*break*/, 1];
-                    case 6:
-                        if (!!code) return [3 /*break*/, 14];
-                        _c.label = 7;
-                    case 7:
-                        _c.trys.push([7, 13, , 14]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "en")).then(function (r) { return r.text(); })];
-                    case 8:
-                        home = _c.sent();
-                        scriptMatch = home.match(/src="(\/_next\/static\/chunks\/[^"]+\.js)"/g);
-                        if (!scriptMatch) return [3 /*break*/, 12];
-                        _b = 0, scriptMatch_1 = scriptMatch;
-                        _c.label = 9;
-                    case 9:
-                        if (!(_b < scriptMatch_1.length)) return [3 /*break*/, 12];
-                        s = scriptMatch_1[_b];
-                        url = s.replace('src="', '').replace('"', '');
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site).concat(url.replace(/^\//, ''))).then(function (r) { return r.text(); })];
-                    case 10:
-                        raw = _c.sent();
-                        index = raw.indexOf(searchKey);
-                        if (index >= 0) {
-                            code = raw;
-                            return [3 /*break*/, 12];
-                        }
-                        _c.label = 11;
-                    case 11:
-                        _b++;
-                        return [3 /*break*/, 9];
-                    case 12: return [3 /*break*/, 14];
-                    case 13:
-                        e_5 = _c.sent();
-                        return [3 /*break*/, 14];
-                    case 14:
-                        if (!code || index === -1) {
-                            return [2 /*return*/, 'IJAFUUxjM25hyzL2AZrn0wl7cESED6Ru'];
-                        }
-                        return [2 /*return*/, code.substring(index + searchKey.length, index + searchKey.length + 32)];
-                }
-            });
+      }),
+      Object.defineProperty(o.prototype, "translationModes", {
+        get: function () {
+          var e = (i.storage.get("preferredMode") || "ai").trim(),
+            l = (i.storage.get("customMode") || "").trim(),
+            a = i.storage.get("fallbackToWeb"),
+            t = [];
+          return (
+            "custom" === e ? l && t.push(l) : e && t.push(e),
+            !1 === a || t.includes("web") || t.push("web"),
+            0 === t.length && t.push("web"),
+            t
+          );
+        },
+        enumerable: !1,
+        configurable: !0,
+      }),
+      Object.defineProperty(o.prototype, "headers", {
+        get: function () {
+          var e = { baggage: this.baggage, "sentry-trace": this.trace };
+          return (this.sessionCookie && (e.Cookie = this.sessionCookie), e);
+        },
+        enumerable: !1,
+        configurable: !0,
+      }),
+      (o.prototype.popularNovels = function (e, r) {
+        return l(this, arguments, void 0, function (e, l) {
+          var r,
+            n,
+            i,
+            o,
+            s,
+            v,
+            b,
+            c,
+            d,
+            h,
+            p,
+            g,
+            m,
+            y = this,
+            f = l.showLatestNovels,
+            S = l.filters;
+          return a(this, function (l) {
+            switch (l.label) {
+              case 0:
+                return (
+                  (r = this.site + this.sourceLang + "novel-list?"),
+                  (n = new URLSearchParams()).append(
+                    "orderBy",
+                    S.orderBy.value,
+                  ),
+                  n.append("order", S.order.value),
+                  n.append("status", S.status.value),
+                  n.append("release_status", S.release_status.value),
+                  n.append("addition_age", S.addition_age.value),
+                  n.append("page", e.toString()),
+                  S.search.value && n.append("text", S.search.value),
+                  (null === (h = S.genres.value) || void 0 === h
+                    ? void 0
+                    : h.include) &&
+                    S.genres.value.include.length > 0 &&
+                    (n.append("gi", S.genres.value.include.join(",")),
+                    n.append("gc", S.genre_operator.value)),
+                  (null === (p = S.genres.value) || void 0 === p
+                    ? void 0
+                    : p.exclude) &&
+                    S.genres.value.exclude.length > 0 &&
+                    n.append("ge", S.genres.value.exclude.join(",")),
+                  (null === (g = S.tags.value) || void 0 === g
+                    ? void 0
+                    : g.include) &&
+                    S.tags.value.include.length > 0 &&
+                    (n.append("ti", S.tags.value.include.join(",")),
+                    n.append("tc", S.tag_operator.value)),
+                  (null === (m = S.tags.value) || void 0 === m
+                    ? void 0
+                    : m.exclude) &&
+                    S.tags.value.exclude.length > 0 &&
+                    n.append("te", S.tags.value.exclude.join(",")),
+                  S.folders.value && n.append("folders", S.folders.value),
+                  S.library_exclude.value &&
+                    n.append("le", S.library_exclude.value),
+                  S.min_chapters.value &&
+                    n.append("count_value", S.min_chapters.value),
+                  S.min_rating.value && n.append("minr", S.min_rating.value),
+                  S.min_review_count.value &&
+                    n.append("minrc", S.min_review_count.value),
+                  f
+                    ? [
+                        4,
+                        (0, t.fetchApi)(this.site + "api/home/recent", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ page: e }),
+                        }),
+                      ]
+                    : [3, 3]
+                );
+              case 1:
+              case 5:
+                return [4, l.sent().json()];
+              case 2:
+                return (
+                  (i = l.sent()),
+                  [
+                    2,
+                    i.data.map(function (e) {
+                      return {
+                        name: e.serie.data.title || e.serie.slug || "",
+                        cover: e.serie.data.image,
+                        path:
+                          y.sourceLang +
+                            "serie-" +
+                            e.serie.raw_id +
+                            "/" +
+                            e.serie.slug || "",
+                      };
+                    }),
+                  ]
+                );
+              case 3:
+                return [
+                  4,
+                  (0, t.fetchApi)(this.site + "en/novel-finder").then(
+                    function (e) {
+                      return e.text();
+                    },
+                  ),
+                ];
+              case 4:
+                if (
+                  ((o = l.sent()),
+                  (s = (0, u.load)(o)),
+                  !(v = s("#__NEXT_DATA__").html()))
+                )
+                  throw new Error(
+                    "Could not find __NEXT_DATA__ on novel finder page",
+                  );
+                return (
+                  (b = JSON.parse(v).buildId),
+                  (r = ""
+                    .concat(this.site, "_next/data/")
+                    .concat(b, "/en/novel-finder.json?")
+                    .concat(n.toString())),
+                  [4, (0, t.fetchApi)(r)]
+                );
+              case 6:
+                return (
+                  (c = l.sent()),
+                  (d = new Set()),
+                  [
+                    2,
+                    c.pageProps.series
+                      .filter(function (e) {
+                        return !d.has(e.raw_id) && (d.add(e.raw_id), !0);
+                      })
+                      .map(function (e) {
+                        return {
+                          name: e.data.title,
+                          cover: e.data.image,
+                          path: ""
+                            .concat(y.sourceLang, "serie-")
+                            .concat(e.raw_id, "/")
+                            .concat(e.slug),
+                        };
+                      }),
+                  ]
+                );
+            }
+          });
         });
-    };
-    WTRLAB.prototype.translate = function (data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var contained, response, translated, e_6;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        contained = data.map(function (line, i) { return "<a i=".concat(i, ">").concat(line, "</a>"); });
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)('https://translate-pa.googleapis.com/v1/translateHtml', {
-                                credentials: 'omit',
-                                headers: {
-                                    'content-type': 'application/json+protobuf',
-                                    'X-Goog-API-Key': 'AIzaSyATBXajvzQLTDHEQbcpq0Ihe0vWDHmO520',
-                                },
-                                referrer: 'https://wtr-lab.com/',
-                                body: "[[".concat(JSON.stringify(contained), ",\"auto\",\"ar\"],\"te_lib\"]"),
-                                method: 'POST',
-                            })];
-                    case 1:
-                        response = _a.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 2:
-                        translated = _a.sent();
-                        if (translated && translated[0]) {
-                            return [2 /*return*/, translated[0].map(function (line) {
-                                    return line.replace(/<\/?a[^>]*>/g, '');
-                                })];
-                        }
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_6 = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 4: 
-                    // Fallback line by line if needed
-                    return [2 /*return*/, data];
-                }
-            });
+      }),
+      (o.prototype.fetchTokens = function () {
+        return l(this, void 0, void 0, function () {
+          var e, l, r, n;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                return [
+                  4,
+                  (0, t.fetchApi)(this.site + this.sourceLang).then(
+                    function (e) {
+                      return e.text();
+                    },
+                  ),
+                ];
+              case 1:
+                return (
+                  (e = a.sent()),
+                  (l = (0, u.load)(e)),
+                  (this.baggage =
+                    null !== (r = l('meta[name="baggage"]').attr("content")) &&
+                    void 0 !== r
+                      ? r
+                      : ""),
+                  (this.trace =
+                    null !==
+                      (n = l('meta[name="sentry-trace"]').attr("content")) &&
+                    void 0 !== n
+                      ? n
+                      : ""),
+                  [2]
+                );
+            }
+          });
         });
-    };
-    WTRLAB.prototype.parseChapter = function (chapterPath) {
-        return __awaiter(this, void 0, void 0, function () {
-            var cleanPath, url, rawId, chapterNo, urlMatch, loadedCheerio, body, chapterJson, jsonData, modes, candidate, _i, modes_1, type, response, res, e_7, chapterContent, encKey, lines, arabicLines, html, _a, arabicLines_1, line;
-            var _b, _c, _d, _e;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
-                    case 0:
-                        cleanPath = chapterPath.replace(/^\/?(?:en|ar)\//, '');
-                        url = "".concat(this.site, "en/").concat(cleanPath);
-                        rawId = null;
-                        chapterNo = null;
-                        urlMatch = cleanPath.match(/(?:serie|novel)-?(\d+)\/[^/]+\/chapter-(\d+)/);
-                        if (urlMatch) {
-                            rawId = parseInt(urlMatch[1], 10);
-                            chapterNo = parseInt(urlMatch[2], 10);
-                        }
-                        loadedCheerio = null;
-                        if (!(!rawId || !chapterNo)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)(url).then(function (res) { return res.text(); })];
-                    case 1:
-                        body = _f.sent();
-                        loadedCheerio = (0, cheerio_1.load)(body);
-                        chapterJson = loadedCheerio('#__NEXT_DATA__').html() + '';
-                        jsonData = JSON.parse(chapterJson);
-                        rawId = jsonData.props.pageProps.serie.chapter.raw_id;
-                        chapterNo = jsonData.props.pageProps.serie.chapter.order;
-                        _f.label = 2;
-                    case 2:
-                        if (!rawId || !chapterNo) {
-                            throw new Error("Invalid chapter URL: ".concat(chapterPath));
-                        }
-                        modes = ['web', 'ai', 'raw'];
-                        candidate = null;
-                        _i = 0, modes_1 = modes;
-                        _f.label = 3;
-                    case 3:
-                        if (!(_i < modes_1.length)) return [3 /*break*/, 9];
-                        type = modes_1[_i];
-                        _f.label = 4;
-                    case 4:
-                        _f.trys.push([4, 7, , 8]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "api/reader/get"), {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                },
-                                referrer: url,
-                                body: JSON.stringify({
-                                    translate: type,
-                                    language: 'en',
-                                    raw_id: rawId,
-                                    chapter_no: chapterNo,
-                                    retry: false,
-                                    force_retry: false,
-                                }),
-                            })];
-                    case 5:
-                        response = _f.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 6:
-                        res = _f.sent();
-                        if ((res === null || res === void 0 ? void 0 : res.success) && ((_c = (_b = res === null || res === void 0 ? void 0 : res.data) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c.body)) {
-                            candidate = res;
-                            return [3 /*break*/, 9];
-                        }
-                        return [3 /*break*/, 8];
-                    case 7:
-                        e_7 = _f.sent();
-                        return [3 /*break*/, 8];
-                    case 8:
-                        _i++;
-                        return [3 /*break*/, 3];
-                    case 9:
-                        if (!((_e = (_d = candidate === null || candidate === void 0 ? void 0 : candidate.data) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.body)) {
-                            throw new Error('Chapter content could not be retrieved from WTR-LAB.');
-                        }
-                        chapterContent = candidate.data.data.body;
-                        if (!(typeof chapterContent === 'string' &&
-                            (chapterContent.startsWith('arr:') || chapterContent.startsWith('str:')))) return [3 /*break*/, 12];
-                        return [4 /*yield*/, this.getKey(loadedCheerio)];
-                    case 10:
-                        encKey = _f.sent();
-                        return [4 /*yield*/, this.decrypt(chapterContent, encKey)];
-                    case 11:
-                        chapterContent = _f.sent();
-                        if (chapterContent === null || chapterContent === void 0 ? void 0 : chapterContent.error) {
-                            return [2 /*return*/, "<p>".concat(chapterContent.error, "</p>")];
-                        }
-                        _f.label = 12;
-                    case 12:
-                        lines = [];
-                        if (Array.isArray(chapterContent)) {
-                            lines = chapterContent;
-                        }
-                        else if (typeof chapterContent === 'string') {
-                            try {
-                                lines = JSON.parse(chapterContent);
-                            }
-                            catch (e) {
-                                lines = [chapterContent];
-                            }
-                        }
-                        return [4 /*yield*/, this.translate(lines)];
-                    case 13:
-                        arabicLines = _f.sent();
-                        html = '';
-                        for (_a = 0, arabicLines_1 = arabicLines; _a < arabicLines_1.length; _a++) {
-                            line = arabicLines_1[_a];
-                            html += "<p>".concat((0, sanitize_html_1.default)(line), "</p>");
-                        }
-                        return [2 /*return*/, html];
-                }
-            });
+      }),
+      (o.prototype.parseNovel = function (e) {
+        return l(this, void 0, void 0, function () {
+          var l,
+            r,
+            n,
+            i,
+            o,
+            s,
+            v,
+            b,
+            c,
+            d,
+            h,
+            p,
+            g,
+            m,
+            y,
+            f,
+            S,
+            P,
+            C,
+            A,
+            w,
+            T,
+            k,
+            M,
+            F,
+            L,
+            x,
+            _,
+            D,
+            R,
+            B,
+            I,
+            O,
+            G,
+            N,
+            E,
+            H,
+            W,
+            j,
+            U,
+            J,
+            q,
+            V,
+            K,
+            z,
+            X;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                return [
+                  4,
+                  (0, t.fetchApi)(this.site + e).then(function (e) {
+                    return e.text();
+                  }),
+                ];
+              case 1:
+                return (
+                  (l = a.sent()),
+                  (r = (0, u.load)(l)),
+                  (n = r('meta[name="baggage"]').attr("content")),
+                  (i = r('meta[name="sentry-trace"]').attr("content")),
+                  n && i
+                    ? ((this.baggage = n), (this.trace = i), [3, 4])
+                    : [3, 2]
+                );
+              case 2:
+                return this.baggage && this.trace
+                  ? [3, 4]
+                  : [4, this.fetchTokens()];
+              case 3:
+                (a.sent(), (a.label = 4));
+              case 4:
+                if (
+                  ((o = r("#__NEXT_DATA__")),
+                  (s = o.html()),
+                  (v = null),
+                  (b = null),
+                  (c = 0),
+                  (d = {
+                    path: e,
+                    name: r("h1.text-uppercase").text(),
+                    summary: r(".lead").text().trim(),
+                  }),
+                  s)
+                )
+                  try {
+                    if (
+                      ((_ = JSON.parse(s)),
+                      (h =
+                        null ===
+                          (O =
+                            null ===
+                              (I =
+                                null === (B = null == _ ? void 0 : _.props) ||
+                                void 0 === B
+                                  ? void 0
+                                  : B.pageProps) || void 0 === I
+                              ? void 0
+                              : I.serie) || void 0 === O
+                          ? void 0
+                          : O.serie_data))
+                    )
+                      switch (
+                        ((d.name =
+                          (null === (G = h.data) || void 0 === G
+                            ? void 0
+                            : G.title) || ""),
+                        (d.cover =
+                          (null === (N = h.data) || void 0 === N
+                            ? void 0
+                            : N.image) || ""),
+                        (d.summary =
+                          (null === (E = h.data) || void 0 === E
+                            ? void 0
+                            : E.description) || ""),
+                        (d.author =
+                          (null === (H = h.data) || void 0 === H
+                            ? void 0
+                            : H.author) || ""),
+                        (v = h.raw_id || null),
+                        (b = h.slug || null),
+                        h.status)
+                      ) {
+                        case 0:
+                          d.status = "Ongoing";
+                          break;
+                        case 1:
+                          d.status = "Completed";
+                          break;
+                        default:
+                          d.status = "Unknown";
+                      }
+                  } catch (e) {
+                    console.error("Failed to parse __NEXT_DATA__:", e);
+                  }
+                if (
+                  (d.name ||
+                    (d.name =
+                      r("h1.text-uppercase").text() ||
+                      r("h1.long-title").text() ||
+                      r(".title-wrap h1").text().trim()),
+                  d.cover ||
+                    (d.cover =
+                      r(".image-wrap img").attr("src") ||
+                      r(".img-wrap > img").attr("src")),
+                  d.summary ||
+                    (d.summary =
+                      r(".description").text().trim() ||
+                      r(".desc-wrap .description").text().trim() ||
+                      r(".lead").text().trim()),
+                  (p = []),
+                  s)
+                )
+                  try {
+                    for (
+                      g = JSON.parse(s),
+                        m =
+                          null === (W = null == g ? void 0 : g.props) ||
+                          void 0 === W
+                            ? void 0
+                            : W.pageProps,
+                        y =
+                          (null ===
+                            (U =
+                              null === (j = null == m ? void 0 : m.serie) ||
+                              void 0 === j
+                                ? void 0
+                                : j.serie_data) || void 0 === U
+                            ? void 0
+                            : U.genres) || [],
+                        f = new Map(),
+                        r('a[href*="novel-list?genre="]').each(function (e, l) {
+                          var a = (r(l).attr("href") || "").match(
+                              /genre=(\d+)/,
+                            ),
+                            t = r(l).text().trim();
+                          a && t && f.set(parseInt(a[1], 10), t);
+                        }),
+                        S = 0,
+                        P = y;
+                      S < P.length;
+                      S++
+                    )
+                      ((C = P[S]),
+                        (A = f.get(C)) &&
+                          p.push(A.charAt(0).toUpperCase() + A.slice(1)));
+                    if (Array.isArray(null == m ? void 0 : m.tags))
+                      for (w = 0, T = m.tags; w < T.length; w++)
+                        ((k = T[w]),
+                          (M =
+                            (null == k ? void 0 : k.title) &&
+                            String(k.title).trim()) && p.push(M));
+                  } catch (e) {
+                    console.error(
+                      "Failed to read genres/tags from __NEXT_DATA__:",
+                      e,
+                    );
+                  }
+                if (
+                  (p.length > 0 &&
+                    (d.genres = p
+                      .filter(function (e, l) {
+                        return p.indexOf(e) === l;
+                      })
+                      .join(", ")),
+                  d.author ||
+                    (d.author =
+                      r('td:contains("Author")')
+                        .next()
+                        .text()
+                        .replace(/[\t\n]/g, "")
+                        .trim() ||
+                      r('td:contains("Author") + td')
+                        .text()
+                        .replace(/[\t\n]/g, "")
+                        .trim()),
+                  d.status ||
+                    (d.status =
+                      r('td:contains("Status")')
+                        .next()
+                        .text()
+                        .replace(/[\t\n]/g, "")
+                        .trim() ||
+                      r('td:contains("Status") + td')
+                        .text()
+                        .replace(/[\t\n]/g, "")
+                        .trim() ||
+                      (null ===
+                        (J = r('.detail-line:contains("â€¢")')
+                          .text()
+                          .match(/â€¢\s*(\w+)/)) || void 0 === J
+                        ? void 0
+                        : J[1]) ||
+                      ""),
+                  (F = e.match(/(?:serie|novel)-?(\d+)\/([^/]+)/)) &&
+                    ((v = parseInt(F[1])), (b = F[2])),
+                  (L =
+                    r('.detail-line:contains("Chapters")').text() ||
+                    r('div:contains("Chapters")').text()),
+                  (x = L.match(/(\d+)\s+Chapters?/i)) && (c = parseInt(x[1])),
+                  0 === c && s)
+                )
+                  try {
+                    ((_ = JSON.parse(s)),
+                      (c =
+                        null !==
+                          (X =
+                            null ===
+                              (z =
+                                null ===
+                                  (K =
+                                    null ===
+                                      (V =
+                                        null ===
+                                          (q = null == _ ? void 0 : _.props) ||
+                                        void 0 === q
+                                          ? void 0
+                                          : q.pageProps) || void 0 === V
+                                      ? void 0
+                                      : V.serie) || void 0 === K
+                                  ? void 0
+                                  : K.serie_data) || void 0 === z
+                              ? void 0
+                              : z.chapter_count) && void 0 !== X
+                          ? X
+                          : 0));
+                  } catch (e) {
+                    console.error(
+                      "Failed to parse chapter_count from __NEXT_DATA__:",
+                      e,
+                    );
+                  }
+                if (((D = []), !v || !b)) return [3, 9];
+                a.label = 5;
+              case 5:
+                return (
+                  a.trys.push([5, 7, , 8]),
+                  [4, this.fetchAllChapters(v, b)]
+                );
+              case 6:
+                return ((D = a.sent()), [3, 8]);
+              case 7:
+                return (
+                  (R = a.sent()),
+                  console.error("Failed to fetch chapters via API:", R),
+                  (D = []),
+                  [3, 8]
+                );
+              case 8:
+                return [3, 10];
+              case 9:
+                (console.warn("Could not extract rawId or slug from page", {
+                  rawId: v,
+                  slug: b,
+                }),
+                  (a.label = 10));
+              case 10:
+                return ((d.chapters = D), [2, d]);
+            }
+          });
         });
-    };
-    WTRLAB.prototype.fetchAllChapters = function (rawId, slug) {
-        return __awaiter(this, void 0, void 0, function () {
-            var allChapters, batchSize, page, response, data, _i, _a, ch, e_8;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        allChapters = [];
-                        batchSize = 500;
-                        page = 1;
-                        _b.label = 1;
-                    case 1:
-                        if (!(page <= 40)) return [3 /*break*/, 7];
-                        _b.label = 2;
-                    case 2:
-                        _b.trys.push([2, 5, , 6]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "api/serie/").concat(rawId, "/chapters?page=").concat(page, "&limit=").concat(batchSize))];
-                    case 3:
-                        response = _b.sent();
-                        return [4 /*yield*/, response.json()];
-                    case 4:
-                        data = _b.sent();
-                        if (!(data === null || data === void 0 ? void 0 : data.chapters) || data.chapters.length === 0)
-                            return [3 /*break*/, 7];
-                        for (_i = 0, _a = data.chapters; _i < _a.length; _i++) {
-                            ch = _a[_i];
-                            allChapters.push({
-                                name: ch.title ? "Chapter ".concat(ch.order, ": ").concat(ch.title) : "Chapter ".concat(ch.order),
-                                path: "en/serie-".concat(rawId, "/").concat(slug, "/chapter-").concat(ch.order),
-                                chapterNumber: ch.order,
-                            });
-                        }
-                        if (data.chapters.length < batchSize)
-                            return [3 /*break*/, 7];
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_8 = _b.sent();
-                        return [3 /*break*/, 7];
-                    case 6:
-                        page++;
-                        return [3 /*break*/, 1];
-                    case 7: return [2 /*return*/, allChapters];
-                }
-            });
+      }),
+      (o.prototype.decrypt = function (e, t) {
+        return l(this, void 0, void 0, function () {
+          var l, r, u, i, o, s, v, b, c, d, h, p;
+          return a(this, function (a) {
+            try {
+              if (
+                ((l = !1),
+                (r = e),
+                e.startsWith("arr:")
+                  ? ((l = !0), (r = e.substring(4)))
+                  : e.startsWith("str:") && (r = e.substring(4)),
+                3 !== (u = r.split(":")).length)
+              )
+                throw Error("Invalid encrypted data format");
+              return (
+                (i = u.map(function (e) {
+                  return Uint8Array.from(atob(e), function (e) {
+                    return e.charCodeAt(0);
+                  });
+                })),
+                (o = i[0]),
+                (s = i[1]),
+                (v = i[2]),
+                (b = new Uint8Array(v.length + s.length)).set(v),
+                b.set(s, v.length),
+                (c = new TextEncoder().encode(t.slice(0, 32))),
+                (d = (0, n.gcm)(c, o)),
+                (h = d.decrypt(b)),
+                (p = new TextDecoder().decode(h)),
+                l ? [2, JSON.parse(p)] : [2, p]
+              );
+            } catch (e) {
+              return (
+                console.error("Client-side decryption error:", e),
+                [2, { error: "<p>Client-side decryption error:</p>".concat(e) }]
+              );
+            }
+            return [2];
+          });
         });
-    };
-    WTRLAB.prototype.searchNovels = function (searchTerm) {
-        return __awaiter(this, void 0, void 0, function () {
-            var res, data, e_9;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, (0, fetch_1.fetchApi)("".concat(this.site, "api/search"), {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ text: searchTerm }),
-                            })];
-                    case 1:
-                        res = _a.sent();
-                        return [4 /*yield*/, res.json()];
-                    case 2:
-                        data = _a.sent();
-                        if (data === null || data === void 0 ? void 0 : data.data) {
-                            return [2 /*return*/, data.data.map(function (novel) {
-                                    var _a, _b, _c;
-                                    return ({
-                                        name: ((_a = novel.data) === null || _a === void 0 ? void 0 : _a.title) || novel.slug,
-                                        cover: (_b = novel.data) === null || _b === void 0 ? void 0 : _b.image,
-                                        path: "en/serie-".concat(novel.raw_id || ((_c = novel.serie) === null || _c === void 0 ? void 0 : _c.raw_id), "/").concat(novel.slug),
-                                    });
-                                })];
-                        }
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_9 = _a.sent();
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/, []];
-                }
-            });
+      }),
+      (o.prototype.getKey = function (e) {
+        return l(this, void 0, void 0, function () {
+          var l, r, u, n, i, o, s, v, b, c, d, h;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                for (
+                  l = 'TextEncoder().encode("',
+                    r = [],
+                    n = -1,
+                    i = e("head").find("script").toArray(),
+                    o = 0,
+                    s = i;
+                  o < s.length;
+                  o++
+                )
+                  ((v = s[o]),
+                    (d = e(v).attr("src")) && (r.includes(d) || r.push(d)));
+                ((b = 0), (c = r), (a.label = 1));
+              case 1:
+                return b < c.length
+                  ? ((d = c[b]),
+                    [4, (0, t.fetchApi)("".concat(this.site).concat(d))])
+                  : [3, 5];
+              case 2:
+                return [4, a.sent().text()];
+              case 3:
+                if (((h = a.sent()), (n = h.indexOf(l)) >= 0))
+                  return ((u = h), [3, 5]);
+                a.label = 4;
+              case 4:
+                return (b++, [3, 1]);
+              case 5:
+                if (!u) return [2, "IJAFUUxjM25hyzL2AZrn0wl7cESED6Ru"];
+                return [2, u.substring(n + 22, n + 54)];
+            }
+          });
         });
-    };
-    WTRLAB.ALL_TRANSLATION_MODES = [
-        'local',
-        'web',
-        'ai',
-        'raw',
-    ];
-    WTRLAB.SETTING_TRANSLATION_MODES = 'translationModes';
-    WTRLAB.SETTING_SESSION_COOKIE = 'sessionCookie';
-    return WTRLAB;
-}());
-exports.default = new WTRLAB();
+      }),
+      (o.prototype.translate = function (e) {
+        return l(this, void 0, void 0, function () {
+          var l, r;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                return (
+                  (l = e.map(function (e, l) {
+                    return "<a i=".concat(l, ">").concat(e, "</a>");
+                  })),
+                  [
+                    4,
+                    (0, t.fetchApi)(
+                      "https://translate-pa.googleapis.com/v1/translateHtml",
+                      {
+                        credentials: "omit",
+                        headers: {
+                          "content-type": "application/json+protobuf",
+                          "X-Goog-API-Key":
+                            "AIzaSyATBXajvzQLTDHEQbcpq0Ihe0vWDHmO520",
+                        },
+                        referrer: "https://wtr-lab.com/",
+                        body: "[[".concat(
+                          JSON.stringify(l),
+                          ',"auto","ar"],"te_lib"]',
+                        ),
+                        method: "POST",
+                      },
+                    ),
+                  ]
+                );
+              case 1:
+                return [4, a.sent().json()];
+              case 2:
+                return ((r = a.sent()), [2, r && r[0] ? r[0] : []]);
+            }
+          });
+        });
+      }),
+      (o.prototype.parseChapter = function (r) {
+        return l(this, void 0, void 0, function () {
+          var l,
+            n,
+            o,
+            s,
+            v,
+            b,
+            c,
+            d,
+            h,
+            p,
+            g,
+            m,
+            y,
+            f,
+            S,
+            P,
+            C,
+            A,
+            w,
+            T,
+            k,
+            M,
+            F,
+            L,
+            x,
+            _,
+            D,
+            R,
+            B,
+            I,
+            O,
+            G,
+            N,
+            E,
+            H;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                return (
+                  (l = this.site + r),
+                  (n = null),
+                  (o = null),
+                  (s = null),
+                  (v = r.match(
+                    /(?:serie|novel)-?(\d+)\/[^/]+\/chapter-(\d+)/,
+                  )) && ((n = parseInt(v[1], 10)), (o = parseInt(v[2], 10))),
+                  n && o
+                    ? [3, 2]
+                    : [
+                        4,
+                        (0, t.fetchApi)(l).then(function (e) {
+                          return e.text();
+                        }),
+                      ]
+                );
+              case 1:
+                ((_ = a.sent()),
+                  (s = (0, u.load)(_)),
+                  (b = s("#__NEXT_DATA__").html() + ""),
+                  (c = JSON.parse(b)),
+                  (n = c.props.pageProps.serie.chapter.raw_id),
+                  (o = c.props.pageProps.serie.chapter.order),
+                  (a.label = 2));
+              case 2:
+                if (!n || !o)
+                  throw (
+                    (M = "Missing required parameters for API call from URL '"
+                      .concat(r, "' - rawId: ")
+                      .concat(n, ", chapterNo: ")
+                      .concat(o, ". Please check the URL format.")),
+                    console.error(M),
+                    new Error(M)
+                  );
+                return (
+                  (d = this.translationModes),
+                  (h = this.sessionCookie),
+                  (p = []),
+                  (m = null),
+                  [4, this.ensureSignedIn()]
+                );
+              case 3:
+                ((y = a.sent()) && p.push(y), (f = 0), (S = d), (a.label = 4));
+              case 4:
+                return f < S.length
+                  ? ((P = S[f]),
+                    [
+                      4,
+                      (0, t.fetchApi)("".concat(this.site, "api/reader/get"), {
+                        method: "POST",
+                        headers: e(
+                          {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                          },
+                          h ? { Cookie: h } : {},
+                        ),
+                        referrer: l,
+                        body: JSON.stringify({
+                          translate: P,
+                          language: this.sourceLang.replace("/", ""),
+                          raw_id: n,
+                          chapter_no: o,
+                          retry: !1,
+                          force_retry: !1,
+                        }),
+                      }),
+                    ])
+                  : [3, 8];
+              case 5:
+                return [4, (C = a.sent()).text()];
+              case 6:
+                ((A = a.sent()), (w = null));
+                try {
+                  w = JSON.parse(A);
+                } catch (e) {
+                  w = null;
+                }
+                return w
+                  ? ((g = w),
+                    C.ok
+                      ? w.error
+                        ? (p.push('"'.concat(P, '": ').concat(w.error)), [3, 7])
+                        : !1 === w.success
+                          ? (p.push(
+                              '"'
+                                .concat(P, '": ')
+                                .concat(
+                                  w.message || "request was not successful",
+                                ),
+                            ),
+                            [3, 7])
+                          : ((m = P), [3, 8])
+                      : (p.push(
+                          '"'
+                            .concat(P, '": HTTP ')
+                            .concat(C.status)
+                            .concat(w.error ? " â€” " + w.error : "")
+                            .concat(w.message ? " â€” " + w.message : ""),
+                        ),
+                        [3, 7]))
+                  : (p.push(
+                      '"'
+                        .concat(P, '": HTTP ')
+                        .concat(C.status, " â€” response was not JSON: ")
+                        .concat(
+                          A.slice(0, 150)
+                            .replace(/<[^>]*>/g, " ")
+                            .trim(),
+                        ),
+                    ),
+                    [3, 7]);
+              case 7:
+                return (f++, [3, 4]);
+              case 8:
+                return !1 !== i.storage.get("showModeNotice")
+                  ? [4, this.checkSession()]
+                  : [3, 10];
+              case 9:
+                return ((k = a.sent()), [3, 11]);
+              case 10:
+                ((k = h
+                  ? "session cookie sent (".concat(h.length, " chars)")
+                  : "no session cookie set"),
+                  (a.label = 11));
+              case 11:
+                if (
+                  ((T = k),
+                  !m ||
+                    !(null === (G = null == g ? void 0 : g.data) || void 0 === G
+                      ? void 0
+                      : G.data))
+                )
+                  throw (
+                    (M =
+                      "None of the requested translations could be loaded [".concat(
+                        T,
+                        "]. ",
+                      ) +
+                      (p.length
+                        ? p.join(" | ")
+                        : "The server returned no usable response.")),
+                    console.error(M),
+                    new Error(M)
+                  );
+                return (
+                  (F = g.data.data.body),
+                  (L =
+                    null ===
+                      (E =
+                        null === (N = null == g ? void 0 : g.data) ||
+                        void 0 === N
+                          ? void 0
+                          : N.data) || void 0 === E
+                      ? void 0
+                      : E.glossary_data),
+                  (x = ""),
+                  F.toString().startsWith("arr:") ||
+                  F.toString().startsWith("str:")
+                    ? s
+                      ? [3, 13]
+                      : [
+                          4,
+                          (0, t.fetchApi)(l).then(function (e) {
+                            return e.text();
+                          }),
+                        ]
+                    : [3, 17]
+                );
+              case 12:
+                ((_ = a.sent()), (s = (0, u.load)(_)), (a.label = 13));
+              case 13:
+                return [4, this.getKey(s)];
+              case 14:
+                return ((D = a.sent()), [4, this.decrypt(F, D)]);
+              case 15:
+                return (
+                  (F = a.sent()),
+                  Object.prototype.hasOwnProperty.call(F, "error")
+                    ? [2, (x += "<p>".concat(F.error.toString(), "</p>"))]
+                    : [4, this.translate(F)]
+                );
+              case 16:
+                ((F = a.sent()),
+                  (m = "".concat(m, " + Google Translate (on-device)")),
+                  (a.label = 17));
+              case 17:
+                for (
+                  !1 !== i.storage.get("showModeNotice") &&
+                    m &&
+                    (x += "<p><small>Translation: "
+                      .concat(m, " â€” ")
+                      .concat(T, "</small></p>")),
+                    p.length &&
+                      (x += '<p style="color:darkred;"><small>Skipped: '.concat(
+                        p.join(" | "),
+                        "</small></p>",
+                      )),
+                    R =
+                      (null === (H = null == L ? void 0 : L.terms) ||
+                      void 0 === H
+                        ? void 0
+                        : H.map(function (e) {
+                            return e[0];
+                          })) || [],
+                    B = 0,
+                    I = F;
+                  B < I.length;
+                  B++
+                )
+                  ((O = I[B]),
+                    R.length > 0 &&
+                      (O = O.replaceAll(
+                        /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
+                        function (e, l) {
+                          return R[parseInt(l)] || e;
+                        },
+                      )),
+                    (x += "<p>".concat(O, "</p>")));
+                return [2, x];
+            }
+          });
+        });
+      }),
+      (o.prototype.fetchAllChapters = function (r, u) {
+        return l(this, void 0, void 0, function () {
+          var l,
+            n,
+            i,
+            o,
+            s,
+            v,
+            b,
+            c,
+            d,
+            h,
+            p,
+            g,
+            m = this;
+          return a(this, function (a) {
+            switch (a.label) {
+              case 0:
+                ((l = []), (n = 500), (i = 1), (o = !0), (a.label = 1));
+              case 1:
+                if (!o) return [3, 7];
+                ((s = i + n - 1), (a.label = 2));
+              case 2:
+                return (
+                  a.trys.push([2, 5, , 6]),
+                  [
+                    4,
+                    (0, t.fetchApi)(
+                      ""
+                        .concat(this.site, "api/chapters/")
+                        .concat(r, "?start=")
+                        .concat(i, "&end=")
+                        .concat(s),
+                      { headers: e({}, this.headers) },
+                    ),
+                  ]
+                );
+              case 3:
+                return [4, a.sent().json()];
+              case 4:
+                return (
+                  (v = a.sent()),
+                  (b =
+                    null !==
+                      (g =
+                        null !== (h = v.chapters) && void 0 !== h
+                          ? h
+                          : null === (p = v.data) || void 0 === p
+                            ? void 0
+                            : p.chapters) && void 0 !== g
+                      ? g
+                      : []),
+                  Array.isArray(b) && 0 !== b.length
+                    ? ((c = b.map(function (e) {
+                        var l;
+                        return {
+                          name: e.title || e.name || "Chapter ".concat(e.order),
+                          path: ""
+                            .concat(m.sourceLang, "serie-")
+                            .concat(r, "/")
+                            .concat(u, "/chapter-")
+                            .concat(e.order),
+                          releaseTime:
+                            null === (l = e.updated_at) || void 0 === l
+                              ? void 0
+                              : l.substring(0, 10),
+                          chapterNumber: e.order,
+                        };
+                      })),
+                      l.push.apply(l, c),
+                      b.length < n ? ((o = !1), [3, 7]) : ((i += n), [3, 6]))
+                    : ((o = !1), [3, 7])
+                );
+              case 5:
+                return (
+                  (d = a.sent()),
+                  console.error(
+                    "Failed to fetch chapters ".concat(i, "-").concat(s, ":"),
+                    d,
+                  ),
+                  (o = !1),
+                  [3, 7]
+                );
+              case 6:
+                return [3, 1];
+              case 7:
+                return [
+                  2,
+                  l.sort(function (e, l) {
+                    return (e.chapterNumber || 0) - (l.chapterNumber || 0);
+                  }),
+                ];
+            }
+          });
+        });
+      }),
+      (o.prototype.searchNovels = function (e, t) {
+        return l(this, void 0, void 0, function () {
+          var l;
+          return a(this, function (a) {
+            return (
+              ((l = this.filters).search.value = e),
+              [2, this.popularNovels(t, { showLatestNovels: !1, filters: l })]
+            );
+          });
+        });
+      }),
+      o
+    );
+  })();
+exports.default = new o();
