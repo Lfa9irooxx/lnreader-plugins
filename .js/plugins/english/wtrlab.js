@@ -151,7 +151,7 @@ var t = require("@libs/fetch"),
       ((this.id = "WTRLAB_AR"),
         (this.name = "WTR-LAB (Arabic)"),
         (this.site = "https://wtr-lab.com/"),
-        (this.version = "1.2.7"),
+        (this.version = "1.3.0"),
         (this.icon = "src/ar/wtrlab/icon.png"),
         (this.sourceLang = "en/"),
         (this.baggage = ""),
@@ -170,7 +170,7 @@ var t = require("@libs/fetch"),
             type: "Text",
           },
           preferredMode: {
-            value: "ai",
+            value: "webplus",
             label: "Preferred translation",
             type: "Select",
             options: [
@@ -1371,7 +1371,7 @@ var t = require("@libs/fetch"),
       }),
       Object.defineProperty(o.prototype, "translationModes", {
         get: function () {
-          var e = (i.storage.get("preferredMode") || "ai").trim(),
+          var e = (i.storage.get("preferredMode") || "webplus").trim(),
             l = (i.storage.get("customMode") || "").trim(),
             a = i.storage.get("fallbackToWeb"),
             t = [];
@@ -1962,324 +1962,413 @@ var t = require("@libs/fetch"),
       }),
       (o.prototype.translate = function (e) {
         return l(this, void 0, void 0, function () {
-          var l, r;
-          return a(this, function (a) {
-            switch (a.label) {
+          var lines,
+            chunkSize,
+            chunks,
+            results,
+            i,
+            chunk,
+            wrapped,
+            success,
+            attempt,
+            res,
+            json;
+          return a(this, function (state) {
+            switch (state.label) {
               case 0:
-                return (
-                  (l = e.map(function (e, l) {
-                    return "<a i=".concat(l, ">").concat(e, "</a>");
-                  })),
-                  [
-                    4,
-                    (0, t.fetchApi)(
-                      "https://translate-pa.googleapis.com/v1/translateHtml",
-                      {
-                        credentials: "omit",
-                        headers: {
-                          "content-type": "application/json+protobuf",
-                          "X-Goog-API-Key":
-                            "AIzaSyATBXajvzQLTDHEQbcpq0Ihe0vWDHmO520",
-                        },
-                        referrer: "https://wtr-lab.com/",
-                        body: "[[".concat(
-                          JSON.stringify(l),
-                          ',"auto","ar"],"te_lib"]',
-                        ),
-                        method: "POST",
-                      },
-                    ),
-                  ]
-                );
+                lines = Array.isArray(e) ? e : [e];
+                if (lines.length === 0) return [2, []];
+                chunkSize = 35;
+                chunks = [];
+                for (i = 0; i < lines.length; i += chunkSize) {
+                  chunks.push(lines.slice(i, i + chunkSize));
+                }
+                results = [];
+                i = 0;
+                state.label = 1;
               case 1:
-                return [4, a.sent().json()];
+                if (i >= chunks.length) return [3, 6];
+                chunk = chunks[i];
+                wrapped = chunk.map(function (line, idx) {
+                  return "<a i=" + idx + ">" + line + "</a>";
+                });
+                success = false;
+                attempt = 0;
+                state.label = 2;
               case 2:
-                return ((r = a.sent()), [2, r && r[0] ? r[0] : []]);
+                if (attempt >= 3 || success) return [3, 5];
+                state.label = 3;
+                return [
+                  4,
+                  (0, t.fetchApi)(
+                    "https://translate-pa.googleapis.com/v1/translateHtml",
+                    {
+                      credentials: "omit",
+                      headers: {
+                        "content-type": "application/json+protobuf",
+                        "X-Goog-API-Key":
+                          "AIzaSyATBXajvzQLTDHEQbcpq0Ihe0vWDHmO520",
+                      },
+                      referrer: "https://wtr-lab.com/",
+                      body:
+                        "[[" +
+                        JSON.stringify(wrapped) +
+                        ',"auto","ar"],"te_lib"]',
+                      method: "POST",
+                    },
+                  )
+                    .then(function (r) {
+                      return r.json();
+                    })
+                    .catch(function () {
+                      return null;
+                    }),
+                ];
+              case 3:
+                json = state.sent();
+                if (
+                  json &&
+                  json[0] &&
+                  Array.isArray(json[0]) &&
+                  json[0].length > 0
+                ) {
+                  results.push.apply(results, json[0]);
+                  success = true;
+                } else {
+                  attempt++;
+                }
+                return [
+                  4,
+                  new Promise(function (resolve) {
+                    setTimeout(resolve, attempt * 300);
+                  }),
+                ];
+              case 4:
+                state.sent();
+                return [3, 2];
+              case 5:
+                if (!success) {
+                  results.push.apply(results, chunk);
+                }
+                i++;
+                return [3, 1];
+              case 6:
+                return [2, results.length > 0 ? results : lines];
             }
           });
         });
       }),
-      (o.prototype.parseChapter = function (r) {
-        return l(this, void 0, void 0, function () {
-          var l,
-            n,
-            o,
-            s,
-            v,
-            b,
-            c,
-            d,
-            h,
-            p,
-            g,
-            m,
-            y,
-            f,
-            S,
-            P,
-            C,
-            A,
-            w,
-            T,
-            k,
-            M,
-            F,
-            L,
-            x,
-            _,
-            D,
-            R,
-            B,
-            I,
-            O,
-            G,
-            N,
-            E,
-            H;
-          return a(this, function (a) {
-            switch (a.label) {
-              case 0:
-                return (
-                  (l = this.site + r),
-                  (n = null),
-                  (o = null),
-                  (s = null),
-                  (v = r.match(
-                    /(?:serie|novel)-?(\d+)\/[^/]+\/chapter-(\d+)/,
-                  )) && ((n = parseInt(v[1], 10)), (o = parseInt(v[2], 10))),
-                  n && o
-                    ? [3, 2]
-                    : [
-                        4,
-                        (0, t.fetchApi)(l).then(function (e) {
-                          return e.text();
-                        }),
-                      ]
-                );
-              case 1:
-                ((_ = a.sent()),
-                  (s = (0, u.load)(_)),
-                  (b = s("#__NEXT_DATA__").html() + ""),
-                  (c = JSON.parse(b)),
-                  (n = c.props.pageProps.serie.chapter.raw_id),
-                  (o = c.props.pageProps.serie.chapter.order),
-                  (a.label = 2));
-              case 2:
-                if (!n || !o)
-                  throw (
-                    (M = "Missing required parameters for API call from URL '"
-                      .concat(r, "' - rawId: ")
-                      .concat(n, ", chapterNo: ")
-                      .concat(o, ". Please check the URL format.")),
-                    console.error(M),
-                    new Error(M)
-                  );
-                return (
-                  (d = this.translationModes),
-                  (h = this.sessionCookie),
-                  (p = []),
-                  (m = null),
-                  [4, this.ensureSignedIn()]
-                );
-              case 3:
-                ((y = a.sent()) && p.push(y), (f = 0), (S = d), (a.label = 4));
-              case 4:
-                return f < S.length
-                  ? ((P = S[f]),
-                    [
-                      4,
-                      (0, t.fetchApi)("".concat(this.site, "api/reader/get"), {
-                        method: "POST",
-                        headers: e(
-                          {
-                            "Content-Type": "application/json",
-                            Accept: "application/json",
-                          },
-                          h ? { Cookie: h } : {},
-                        ),
-                        referrer: l,
-                        body: JSON.stringify({
-                          translate: P,
-                          language: this.sourceLang.replace("/", ""),
-                          raw_id: n,
-                          chapter_no: o,
-                          retry: !1,
-                          force_retry: !1,
-                        }),
-                      }),
-                    ])
-                  : [3, 8];
-              case 5:
-                return [4, (C = a.sent()).text()];
-              case 6:
-                ((A = a.sent()), (w = null));
-                try {
-                  w = JSON.parse(A);
-                } catch (e) {
-                  w = null;
-                }
-                return w
-                  ? ((g = w),
-                    C.ok
-                      ? w.error
-                        ? (p.push('"'.concat(P, '": ').concat(w.error)), [3, 7])
-                        : !1 === w.success
-                          ? (p.push(
-                              '"'
-                                .concat(P, '": ')
-                                .concat(
-                                  w.message || "request was not successful",
-                                ),
-                            ),
-                            [3, 7])
-                          : ((m = P), [3, 8])
-                      : (p.push(
-                          '"'
-                            .concat(P, '": HTTP ')
-                            .concat(C.status)
-                            .concat(w.error ? " â€” " + w.error : "")
-                            .concat(w.message ? " â€” " + w.message : ""),
-                        ),
-                        [3, 7]))
-                  : (p.push(
-                      '"'
-                        .concat(P, '": HTTP ')
-                        .concat(C.status, " â€” response was not JSON: ")
-                        .concat(
-                          A.slice(0, 150)
-                            .replace(/<[^>]*>/g, " ")
-                            .trim(),
-                        ),
-                    ),
-                    [3, 7]);
-              case 7:
-                return (f++, [3, 4]);
-              case 8:
-                return !1 !== i.storage.get("showModeNotice")
-                  ? [4, this.checkSession()]
-                  : [3, 10];
-              case 9:
-                return ((k = a.sent()), [3, 11]);
-              case 10:
-                ((k = h
-                  ? "session cookie sent (".concat(h.length, " chars)")
-                  : "no session cookie set"),
-                  (a.label = 11));
-              case 11:
-                if (
-                  ((T = k),
-                  !m ||
-                    !(null === (G = null == g ? void 0 : g.data) || void 0 === G
-                      ? void 0
-                      : G.data))
-                )
-                  throw (
-                    (M =
-                      "None of the requested translations could be loaded [".concat(
-                        T,
-                        "]. ",
-                      ) +
-                      (p.length
-                        ? p.join(" | ")
-                        : "The server returned no usable response.")),
-                    console.error(M),
-                    new Error(M)
-                  );
-                return (
-                  (F = g.data.data.body),
-                  (L =
-                    null ===
-                      (E =
-                        null === (N = null == g ? void 0 : g.data) ||
-                        void 0 === N
-                          ? void 0
-                          : N.data) || void 0 === E
-                      ? void 0
-                      : E.glossary_data),
-                  (x = ""),
-                  F.toString().startsWith("arr:") ||
-                  F.toString().startsWith("str:")
-                    ? s
-                      ? [3, 13]
-                      : [
-                          4,
-                          (0, t.fetchApi)(l).then(function (e) {
-                            return e.text();
-                          }),
-                        ]
-                    : [3, 15]
-                );
-              case 12:
-                ((_ = a.sent()), (s = (0, u.load)(_)), (a.label = 13));
-              case 13:
-                return [4, this.getKey(s)];
-              case 14:
-                return ((D = a.sent()), [4, this.decrypt(F, D)]);
-              case 15:
-                F = a.sent() || F;
-                if (Object.prototype.hasOwnProperty.call(F, "error")) {
-                  return [2, (x += "<p>".concat(F.error.toString(), "</p>"))];
-                }
-                R =
-                  (null === (H = null == L ? void 0 : L.terms) || void 0 === H
-                    ? void 0
-                    : H.map(function (e) {
-                        return e[0];
-                      })) || [];
-                if (R.length > 0 && Array.isArray(F)) {
-                  F = F.map(function (line) {
-                    return typeof line === "string"
-                      ? line.replaceAll(
-                          /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
-                          function (match, idx) {
-                            return R[parseInt(idx)] || match;
-                          },
-                        )
-                      : line;
-                  });
-                }
-                return [4, this.translate(Array.isArray(F) ? F : [F])];
-              case 16:
-                ((F = a.sent()),
-                  (m = "".concat(m, " + Google Translate (on-device)")),
-                  (a.label = 17));
-              case 17:
-                for (
-                  !1 !== i.storage.get("showModeNotice") &&
-                    m &&
-                    (x += "<p><small>Translation: "
-                      .concat(m, " â€” ")
-                      .concat(T, "</small></p>")),
-                    p.length &&
-                      (x += '<p style="color:darkred;"><small>Skipped: '.concat(
-                        p.join(" | "),
-                        "</small></p>",
-                      )),
-                    R =
-                      (null === (H = null == L ? void 0 : L.terms) ||
-                      void 0 === H
-                        ? void 0
-                        : H.map(function (e) {
-                            return e[0];
-                          })) || [],
-                    B = 0,
-                    I = F;
-                  B < I.length;
-                  B++
-                )
-                  ((O = I[B]),
-                    R.length > 0 &&
-                      (O = O.replaceAll(
-                        /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
-                        function (e, l) {
-                          return R[parseInt(l)] || e;
-                        },
-                      )),
-                    (x += "<p>".concat(O, "</p>")));
-                return [2, x];
+      (o.prototype.parseChapter = async function (chapterPath) {
+        var url = this.site + chapterPath;
+        var rawId = null;
+        var chapterNo = null;
+        var loadedCheerio = null;
+
+        var urlMatch = chapterPath.match(
+          /(?:serie|novel)[-/]?(\d+)\/[^/]+\/chapter-(\d+)/,
+        );
+        if (urlMatch) {
+          rawId = parseInt(urlMatch[1], 10);
+          chapterNo = parseInt(urlMatch[2], 10);
+        }
+
+        if (!rawId || !chapterNo) {
+          try {
+            var pageHtml = await (0, t.fetchApi)(url).then(function (res) {
+              return res.text();
+            });
+            loadedCheerio = (0, u.load)(pageHtml);
+            var scriptJson = loadedCheerio("#__NEXT_DATA__").html() + "";
+            var parsedData = JSON.parse(scriptJson);
+            rawId =
+              parsedData &&
+              parsedData.props &&
+              parsedData.props.pageProps &&
+              parsedData.props.pageProps.serie &&
+              parsedData.props.pageProps.serie.chapter &&
+              parsedData.props.pageProps.serie.chapter.raw_id;
+            chapterNo =
+              parsedData &&
+              parsedData.props &&
+              parsedData.props.pageProps &&
+              parsedData.props.pageProps.serie &&
+              parsedData.props.pageProps.serie.chapter &&
+              parsedData.props.pageProps.serie.chapter.order;
+          } catch (e) {}
+        }
+
+        if (!rawId || !chapterNo) {
+          var errStr =
+            "Missing required parameters for API call from URL '" +
+            chapterPath +
+            "' - rawId: " +
+            rawId +
+            ", chapterNo: " +
+            chapterNo;
+          console.error(errStr);
+          throw new Error(errStr);
+        }
+
+        var translationTypes = this.translationModes;
+        var cookie = this.sessionCookie;
+        var attemptLog = [];
+        var parsedJson = null;
+        var usedType = null;
+
+        var signInNote = await this.ensureSignedIn();
+        if (signInNote) attemptLog.push(signInNote);
+
+        for (var f = 0; f < translationTypes.length; f++) {
+          var mode = translationTypes[f];
+          try {
+            var apiResponse = await (0, t.fetchApi)(
+              this.site + "api/reader/get",
+              {
+                method: "POST",
+                headers: e(
+                  {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                  },
+                  cookie ? { Cookie: cookie } : {},
+                ),
+                referrer: url,
+                body: JSON.stringify({
+                  translate: mode,
+                  language: this.sourceLang.replace("/", ""),
+                  raw_id: rawId,
+                  chapter_no: chapterNo,
+                  retry: false,
+                  force_retry: false,
+                }),
+              },
+            );
+
+            var rawText = await apiResponse.text();
+            var candidate = null;
+            try {
+              candidate = JSON.parse(rawText);
+            } catch (err) {
+              candidate = null;
             }
+
+            if (!candidate) {
+              attemptLog.push(
+                '"' +
+                  mode +
+                  '": HTTP ' +
+                  apiResponse.status +
+                  " â€” response was not JSON: " +
+                  rawText
+                    .slice(0, 120)
+                    .replace(/<[^>]*>/g, " ")
+                    .trim(),
+              );
+              continue;
+            }
+
+            if (!apiResponse.ok) {
+              attemptLog.push(
+                '"' +
+                  mode +
+                  '": HTTP ' +
+                  apiResponse.status +
+                  (candidate.error ? " â€” " + candidate.error : "") +
+                  (candidate.message ? " â€” " + candidate.message : ""),
+              );
+              continue;
+            }
+
+            if (candidate.error) {
+              attemptLog.push('"' + mode + '": ' + candidate.error);
+              continue;
+            }
+
+            if (candidate.success === false) {
+              attemptLog.push(
+                '"' +
+                  mode +
+                  '": ' +
+                  (candidate.message || "request was not successful"),
+              );
+              continue;
+            }
+
+            // Hydrate content_url (new WTR-LAB signed content delivery)
+            if (
+              candidate.content_url &&
+              (!candidate.data || !candidate.data.data)
+            ) {
+              try {
+                var contentFullUrl = candidate.content_url.startsWith("http")
+                  ? candidate.content_url
+                  : this.site + candidate.content_url.replace(/^\//, "");
+
+                var contentRes = await (0, t.fetchApi)(contentFullUrl, {
+                  method: "GET",
+                  headers: e(
+                    {
+                      Accept: "application/json",
+                      "Content-Type": "application/json",
+                    },
+                    cookie ? { Cookie: cookie } : {},
+                  ),
+                });
+
+                if (contentRes.ok) {
+                  var contentJson = await contentRes.json();
+                  if (
+                    contentJson &&
+                    contentJson.success !== false &&
+                    contentJson.data
+                  ) {
+                    candidate.data = contentJson.data;
+                  } else {
+                    attemptLog.push(
+                      '"' +
+                        mode +
+                        '": failed to hydrate content_url: ' +
+                        ((contentJson && contentJson.error) ||
+                          JSON.stringify(contentJson).slice(0, 80)),
+                    );
+                    continue;
+                  }
+                } else {
+                  attemptLog.push(
+                    '"' + mode + '": content_url HTTP ' + contentRes.status,
+                  );
+                  continue;
+                }
+              } catch (hErr) {
+                attemptLog.push(
+                  '"' +
+                    mode +
+                    '": hydrate error: ' +
+                    (hErr.message || String(hErr)),
+                );
+                continue;
+              }
+            }
+
+            if (!candidate.data || !candidate.data.data) {
+              attemptLog.push('"' + mode + '": missing data.data payload');
+              continue;
+            }
+
+            parsedJson = candidate;
+            usedType = mode;
+            break;
+          } catch (modeErr) {
+            attemptLog.push(
+              '"' +
+                mode +
+                '": exception ' +
+                (modeErr.message || String(modeErr)),
+            );
+          }
+        }
+
+        var showNotice = i.storage.get("showModeNotice") !== false;
+        var cookieState = showNotice
+          ? await this.checkSession()
+          : cookie
+            ? "session cookie sent (" + cookie.length + " chars)"
+            : "no session cookie set";
+
+        if (
+          !usedType ||
+          !parsedJson ||
+          !parsedJson.data ||
+          !parsedJson.data.data
+        ) {
+          var errorMsg =
+            "None of the requested translations could be loaded [" +
+            cookieState +
+            "]. " +
+            (attemptLog.length
+              ? attemptLog.join(" | ")
+              : "The server returned no usable response.");
+          console.error(errorMsg);
+          throw new Error(errorMsg);
+        }
+
+        var chapterContent = parsedJson.data.data.body;
+        var chapterGlossary = parsedJson.data.data.glossary_data;
+        var htmlString = "";
+
+        if (
+          chapterContent &&
+          (chapterContent.toString().startsWith("arr:") ||
+            chapterContent.toString().startsWith("str:"))
+        ) {
+          if (!loadedCheerio) {
+            var bodyText = await (0, t.fetchApi)(url).then(function (e) {
+              return e.text();
+            });
+            loadedCheerio = (0, u.load)(bodyText);
+          }
+          var encKey = await this.getKey(loadedCheerio);
+          chapterContent = await this.decrypt(chapterContent, encKey);
+          if (chapterContent && chapterContent.error) {
+            htmlString += "<p>" + chapterContent.error.toString() + "</p>";
+            return htmlString;
+          }
+          chapterContent = await this.translate(chapterContent);
+          usedType = usedType + " + Google Translate (on-device)";
+        } else if (Array.isArray(chapterContent)) {
+          chapterContent = await this.translate(chapterContent);
+          usedType = usedType + " + Google Translate (on-device)";
+        } else if (
+          typeof chapterContent === "string" &&
+          chapterContent.trim().length > 0
+        ) {
+          var rawLines = chapterContent.split(/\r?\n/).filter(function (l) {
+            return l.trim().length > 0;
           });
-        });
+          chapterContent = await this.translate(rawLines);
+          usedType = usedType + " + Google Translate (on-device)";
+        }
+
+        if (i.storage.get("showModeNotice") !== false && usedType) {
+          htmlString +=
+            "<p><small>Translation: " +
+            usedType +
+            " â€” " +
+            cookieState +
+            "</small></p>";
+        }
+
+        if (attemptLog.length) {
+          htmlString +=
+            '<p style="color:darkred;"><small>Skipped: ' +
+            attemptLog.join(" | ") +
+            "</small></p>";
+        }
+
+        var terms =
+          chapterGlossary && Array.isArray(chapterGlossary.terms)
+            ? chapterGlossary.terms.map(function (t) {
+                return t[0];
+              })
+            : [];
+
+        var contentArray = Array.isArray(chapterContent)
+          ? chapterContent
+          : [String(chapterContent)];
+        for (var bIdx = 0; bIdx < contentArray.length; bIdx++) {
+          var para = contentArray[bIdx];
+          if (terms.length > 0 && typeof para === "string") {
+            para = para.replaceAll(
+              /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
+              function (match, index) {
+                return terms[parseInt(index, 10)] || match;
+              },
+            );
+          }
+          htmlString += "<p>" + para + "</p>";
+        }
+
+        return htmlString;
       }),
       (o.prototype.fetchAllChapters = function (r, u) {
         return l(this, void 0, void 0, function () {
