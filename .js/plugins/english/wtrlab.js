@@ -151,7 +151,7 @@ var t = require("@libs/fetch"),
       ((this.id = "WTRLAB_AR"),
         (this.name = "WTR-LAB (Arabic)"),
         (this.site = "https://wtr-lab.com/"),
-        (this.version = "1.3.0"),
+        (this.version = "1.3.1"),
         (this.icon = "src/ar/wtrlab/icon.png"),
         (this.sourceLang = "en/"),
         (this.baggage = ""),
@@ -160,30 +160,30 @@ var t = require("@libs/fetch"),
           signInUrl: {
             value: "",
             label:
-              'Sign-in link â€” request "Continue with Email" on wtr-lab, then paste the full link from that email here (the plugin reads the token out of it and redeems it). Clear this field once AI chapters load; links are single-use and short-lived.',
+              'Sign-in link — request "Continue with Email" on wtr-lab, then paste the full link from that email here (the plugin reads the token out of it and redeems it). Clear this field once AI chapters load; links are single-use and short-lived.',
             type: "Text",
           },
           sessionCookie: {
             value: "",
             label:
-              "Session cookie (fallback) â€” usually leave EMPTY. Android replaces this header with its own stored cookies whenever it has any, so the sign-in link above is the reliable route.",
+              "Session cookie (fallback) — usually leave EMPTY. Android replaces this header with its own stored cookies whenever it has any, so the sign-in link above is the reliable route.",
             type: "Text",
           },
           preferredMode: {
-            value: "webplus",
+            value: "ai",
             label: "Preferred translation",
             type: "Select",
             options: [
               { label: "AI", value: "ai" },
               { label: "Web+", value: "webplus" },
               { label: "Web", value: "web" },
-              { label: "Custom â€” set the id below", value: "custom" },
+              { label: "Custom — set the id below", value: "custom" },
             ],
           },
           customMode: {
             value: "",
             label:
-              'Custom translation id â€” only used when "Custom" is selected above. This is the value wtr-lab sends as "translate" in its /api/reader/get request.',
+              'Custom translation id — only used when "Custom" is selected above. This is the value wtr-lab sends as "translate" in its /api/reader/get request.',
             type: "Text",
           },
           fallbackToWeb: {
@@ -1231,7 +1231,7 @@ var t = require("@libs/fetch"),
                 )
                   return [
                     2,
-                    "Sign-in link ignored â€” it is not an https wtr-lab.com address.",
+                    "Sign-in link ignored — it is not an https wtr-lab.com address.",
                   ];
                 if (
                   ((l = ""),
@@ -1242,7 +1242,7 @@ var t = require("@libs/fetch"),
                 )
                   return [
                     2,
-                    'Sign-in link ignored â€” no token found. Paste the whole link from the email (it contains "token=").',
+                    'Sign-in link ignored — no token found. Paste the whole link from the email (it contains "token=").',
                   ];
                 ((u = ""
                   .concat(this.site, "api/auth/magic-link/verify?token=")
@@ -1371,16 +1371,20 @@ var t = require("@libs/fetch"),
       }),
       Object.defineProperty(o.prototype, "translationModes", {
         get: function () {
-          var e = (i.storage.get("preferredMode") || "webplus").trim(),
+          var e = (i.storage.get("preferredMode") || "ai").trim(),
             l = (i.storage.get("customMode") || "").trim(),
             a = i.storage.get("fallbackToWeb"),
             t = [];
-          return (
-            "custom" === e ? l && t.push(l) : e && t.push(e),
-            !1 === a || t.includes("web") || t.push("web"),
-            0 === t.length && t.push("web"),
-            t
-          );
+          if ("custom" === e) {
+            if (l) t.push(l);
+          } else if (e) {
+            t.push(e);
+          }
+          if (!t.includes("ai")) t.push("ai");
+          if (!t.includes("webplus")) t.push("webplus");
+          if (!1 !== a && !t.includes("web")) t.push("web");
+          if (0 === t.length) t.push("ai", "webplus", "web");
+          return t;
         },
         enumerable: !1,
         configurable: !0,
@@ -1806,9 +1810,9 @@ var t = require("@libs/fetch"),
                         .replace(/[\t\n]/g, "")
                         .trim() ||
                       (null ===
-                        (J = r('.detail-line:contains("â€¢")')
+                        (J = r('.detail-line:contains("•")')
                           .text()
-                          .match(/â€¢\s*(\w+)/)) || void 0 === J
+                          .match(/•\s*(\w+)/)) || void 0 === J
                         ? void 0
                         : J[1]) ||
                       ""),
@@ -1923,81 +1927,34 @@ var t = require("@libs/fetch"),
       }),
       (o.prototype.getKey = function (e) {
         return l(this, void 0, void 0, function () {
-          var l, r, u, n, i, o, s, v, b, c, d, h;
           return a(this, function (a) {
-            switch (a.label) {
-              case 0:
-                for (
-                  l = 'TextEncoder().encode("',
-                    r = [],
-                    n = -1,
-                    i = e("head").find("script").toArray(),
-                    o = 0,
-                    s = i;
-                  o < s.length;
-                  o++
-                )
-                  ((v = s[o]),
-                    (d = e(v).attr("src")) && (r.includes(d) || r.push(d)));
-                ((b = 0), (c = r), (a.label = 1));
-              case 1:
-                return b < c.length
-                  ? ((d = c[b]),
-                    [4, (0, t.fetchApi)("".concat(this.site).concat(d))])
-                  : [3, 5];
-              case 2:
-                return [4, a.sent().text()];
-              case 3:
-                if (((h = a.sent()), (n = h.indexOf(l)) >= 0))
-                  return ((u = h), [3, 5]);
-                a.label = 4;
-              case 4:
-                return (b++, [3, 1]);
-              case 5:
-                if (!u) return [2, "IJAFUUxjM25hyzL2AZrn0wl7cESED6Ru"];
-                return [2, u.substring(n + 22, n + 54)];
-            }
+            return [2, "IJAFUUxjM25hyzL2AZrn0wl7cESED6Ru"];
           });
         });
       }),
-      (o.prototype.translate = function (e) {
+      (o.prototype.translate = function (lines) {
         return l(this, void 0, void 0, function () {
-          var lines,
-            chunkSize,
-            chunks,
-            results,
-            i,
-            chunk,
-            wrapped,
-            success,
-            attempt,
-            res,
-            json;
+          var inputLines, chunkSize, chunks, outResults, cIdx, chunk, wrapped, trJson, cleaned;
           return a(this, function (state) {
             switch (state.label) {
               case 0:
-                lines = Array.isArray(e) ? e : [e];
-                if (lines.length === 0) return [2, []];
-                chunkSize = 35;
+                inputLines = Array.isArray(lines) ? lines : [lines];
+                if (inputLines.length === 0) return [2, []];
+                chunkSize = 50;
                 chunks = [];
-                for (i = 0; i < lines.length; i += chunkSize) {
-                  chunks.push(lines.slice(i, i + chunkSize));
+                for (cIdx = 0; cIdx < inputLines.length; cIdx += chunkSize) {
+                  chunks.push(inputLines.slice(cIdx, cIdx + chunkSize));
                 }
-                results = [];
-                i = 0;
+                outResults = [];
+                cIdx = 0;
                 state.label = 1;
               case 1:
-                if (i >= chunks.length) return [3, 6];
-                chunk = chunks[i];
+                if (cIdx >= chunks.length) return [3, 4];
+                chunk = chunks[cIdx];
                 wrapped = chunk.map(function (line, idx) {
                   return "<a i=" + idx + ">" + line + "</a>";
                 });
-                success = false;
-                attempt = 0;
                 state.label = 2;
-              case 2:
-                if (attempt >= 3 || success) return [3, 5];
-                state.label = 3;
                 return [
                   4,
                   (0, t.fetchApi)(
@@ -2024,351 +1981,260 @@ var t = require("@libs/fetch"),
                       return null;
                     }),
                 ];
-              case 3:
-                json = state.sent();
+              case 2:
+                trJson = state.sent();
                 if (
-                  json &&
-                  json[0] &&
-                  Array.isArray(json[0]) &&
-                  json[0].length > 0
+                  trJson &&
+                  trJson[0] &&
+                  Array.isArray(trJson[0]) &&
+                  trJson[0].length > 0
                 ) {
-                  results.push.apply(results, json[0]);
-                  success = true;
+                  cleaned = trJson[0].map(function (s) {
+                    return String(s)
+                      .replace(/<\/?a[^>]*>/gi, "")
+                      .replace(/&quot;/g, '"')
+                      .replace(/&#39;/g, "'")
+                      .replace(/&amp;/g, "&")
+                      .replace(/&lt;/g, "<")
+                      .replace(/&gt;/g, ">");
+                  });
+                  outResults.push.apply(outResults, cleaned);
                 } else {
-                  attempt++;
+                  outResults.push.apply(outResults, chunk);
                 }
-                return [
-                  4,
-                  new Promise(function (resolve) {
-                    setTimeout(resolve, attempt * 300);
-                  }),
-                ];
-              case 4:
-                state.sent();
-                return [3, 2];
-              case 5:
-                if (!success) {
-                  results.push.apply(results, chunk);
-                }
-                i++;
+                cIdx++;
                 return [3, 1];
-              case 6:
-                return [2, results.length > 0 ? results : lines];
+              case 4:
+                return [2, outResults.length > 0 ? outResults : inputLines];
             }
           });
         });
       }),
-      (o.prototype.parseChapter = async function (chapterPath) {
-        var url = this.site + chapterPath;
-        var rawId = null;
-        var chapterNo = null;
-        var loadedCheerio = null;
-
-        var urlMatch = chapterPath.match(
-          /(?:serie|novel)[-/]?(\d+)\/[^/]+\/chapter-(\d+)/,
-        );
-        if (urlMatch) {
-          rawId = parseInt(urlMatch[1], 10);
-          chapterNo = parseInt(urlMatch[2], 10);
-        }
-
-        if (!rawId || !chapterNo) {
-          try {
-            var pageHtml = await (0, t.fetchApi)(url).then(function (res) {
-              return res.text();
-            });
-            loadedCheerio = (0, u.load)(pageHtml);
-            var scriptJson = loadedCheerio("#__NEXT_DATA__").html() + "";
-            var parsedData = JSON.parse(scriptJson);
-            rawId =
-              parsedData &&
-              parsedData.props &&
-              parsedData.props.pageProps &&
-              parsedData.props.pageProps.serie &&
-              parsedData.props.pageProps.serie.chapter &&
-              parsedData.props.pageProps.serie.chapter.raw_id;
-            chapterNo =
-              parsedData &&
-              parsedData.props &&
-              parsedData.props.pageProps &&
-              parsedData.props.pageProps.serie &&
-              parsedData.props.pageProps.serie.chapter &&
-              parsedData.props.pageProps.serie.chapter.order;
-          } catch (e) {}
-        }
-
-        if (!rawId || !chapterNo) {
-          var errStr =
-            "Missing required parameters for API call from URL '" +
-            chapterPath +
-            "' - rawId: " +
-            rawId +
-            ", chapterNo: " +
-            chapterNo;
-          console.error(errStr);
-          throw new Error(errStr);
-        }
-
-        var translationTypes = this.translationModes;
-        var cookie = this.sessionCookie;
-        var attemptLog = [];
-        var parsedJson = null;
-        var usedType = null;
-
-        var signInNote = await this.ensureSignedIn();
-        if (signInNote) attemptLog.push(signInNote);
-
-        for (var f = 0; f < translationTypes.length; f++) {
-          var mode = translationTypes[f];
-          try {
-            var apiResponse = await (0, t.fetchApi)(
-              this.site + "api/reader/get",
-              {
-                method: "POST",
-                headers: e(
-                  {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                  },
-                  cookie ? { Cookie: cookie } : {},
-                ),
-                referrer: url,
-                body: JSON.stringify({
-                  translate: mode,
-                  language: this.sourceLang.replace("/", ""),
-                  raw_id: rawId,
-                  chapter_no: chapterNo,
-                  retry: false,
-                  force_retry: false,
-                }),
-              },
-            );
-
-            var rawText = await apiResponse.text();
-            var candidate = null;
-            try {
-              candidate = JSON.parse(rawText);
-            } catch (err) {
-              candidate = null;
-            }
-
-            if (!candidate) {
-              attemptLog.push(
-                '"' +
-                  mode +
-                  '": HTTP ' +
-                  apiResponse.status +
-                  " â€” response was not JSON: " +
-                  rawText
-                    .slice(0, 120)
-                    .replace(/<[^>]*>/g, " ")
-                    .trim(),
-              );
-              continue;
-            }
-
-            if (!apiResponse.ok) {
-              attemptLog.push(
-                '"' +
-                  mode +
-                  '": HTTP ' +
-                  apiResponse.status +
-                  (candidate.error ? " â€” " + candidate.error : "") +
-                  (candidate.message ? " â€” " + candidate.message : ""),
-              );
-              continue;
-            }
-
-            if (candidate.error) {
-              attemptLog.push('"' + mode + '": ' + candidate.error);
-              continue;
-            }
-
-            if (candidate.success === false) {
-              attemptLog.push(
-                '"' +
-                  mode +
-                  '": ' +
-                  (candidate.message || "request was not successful"),
-              );
-              continue;
-            }
-
-            // Hydrate content_url (new WTR-LAB signed content delivery)
-            if (
-              candidate.content_url &&
-              (!candidate.data || !candidate.data.data)
-            ) {
-              try {
-                var contentFullUrl = candidate.content_url.startsWith("http")
-                  ? candidate.content_url
-                  : this.site + candidate.content_url.replace(/^\//, "");
-
-                var contentRes = await (0, t.fetchApi)(contentFullUrl, {
-                  method: "GET",
-                  headers: e(
-                    {
-                      Accept: "application/json",
-                      "Content-Type": "application/json",
-                    },
-                    cookie ? { Cookie: cookie } : {},
-                  ),
-                });
-
-                if (contentRes.ok) {
-                  var contentJson = await contentRes.json();
-                  if (
-                    contentJson &&
-                    contentJson.success !== false &&
-                    contentJson.data
-                  ) {
-                    candidate.data = contentJson.data;
-                  } else {
-                    attemptLog.push(
-                      '"' +
-                        mode +
-                        '": failed to hydrate content_url: ' +
-                        ((contentJson && contentJson.error) ||
-                          JSON.stringify(contentJson).slice(0, 80)),
-                    );
-                    continue;
-                  }
-                } else {
-                  attemptLog.push(
-                    '"' + mode + '": content_url HTTP ' + contentRes.status,
-                  );
-                  continue;
+      (o.prototype.parseChapter = function (chapterPath) {
+        return l(this, void 0, void 0, function () {
+          var chapterUrl, rawId, chapterNo, loadedCheerio, urlMatch, scriptText, parsedData,
+            translationTypes, cookie, attemptLog, parsedJson, usedType, signInNote,
+            fIdx, mode, apiRes, rawText, candidate, contentFullUrl, contentRes, contentJson,
+            showNotice, cookieState, errorMsg, chapterContent, chapterGlossary, htmlString,
+            encKey, rawLines, terms, contentArray, bIdx, para;
+          return a(this, function (state) {
+            switch (state.label) {
+              case 0:
+                chapterUrl = this.site.replace(/\/+$/, "") + "/" + chapterPath.replace(/^\/+/, "");
+                rawId = null;
+                chapterNo = null;
+                loadedCheerio = null;
+                urlMatch = chapterPath.match(/(?:serie|novel)[-/]?(\d+)\/[^/]+\/chapter-(\d+)/);
+                if (urlMatch) {
+                  rawId = parseInt(urlMatch[1], 10);
+                  chapterNo = parseInt(urlMatch[2], 10);
                 }
-              } catch (hErr) {
-                attemptLog.push(
-                  '"' +
-                    mode +
-                    '": hydrate error: ' +
-                    (hErr.message || String(hErr)),
-                );
-                continue;
-              }
+                if (rawId && chapterNo) return [3, 2];
+                state.label = 1;
+                return [
+                  4,
+                  (0, t.fetchApi)(chapterUrl)
+                    .then(function (res) { return res.text(); })
+                    .catch(function () { return ""; })
+                ];
+              case 1:
+                scriptText = state.sent();
+                if (scriptText) {
+                  try {
+                    loadedCheerio = (0, u.load)(scriptText);
+                    parsedData = JSON.parse(loadedCheerio("#__NEXT_DATA__").html() || "{}");
+                    rawId = parsedData && parsedData.props && parsedData.props.pageProps && parsedData.props.pageProps.serie && parsedData.props.pageProps.serie.chapter && parsedData.props.pageProps.serie.chapter.raw_id;
+                    chapterNo = parsedData && parsedData.props && parsedData.props.pageProps && parsedData.props.pageProps.serie && parsedData.props.pageProps.serie.chapter && parsedData.props.pageProps.serie.chapter.order;
+                  } catch (e) {}
+                }
+                state.label = 2;
+              case 2:
+                if (!rawId || !chapterNo) {
+                  throw new Error("Missing parameters for chapter '" + chapterPath + "' - rawId: " + rawId + ", chapterNo: " + chapterNo);
+                }
+                translationTypes = this.translationModes;
+                cookie = this.sessionCookie;
+                attemptLog = [];
+                parsedJson = null;
+                usedType = null;
+                state.label = 3;
+                return [4, this.ensureSignedIn()];
+              case 3:
+                signInNote = state.sent();
+                if (signInNote) attemptLog.push(signInNote);
+                fIdx = 0;
+                state.label = 4;
+              case 4:
+                if (fIdx >= translationTypes.length) return [3, 9];
+                mode = translationTypes[fIdx];
+                state.label = 5;
+                return [
+                  4,
+                  (0, t.fetchApi)(
+                    this.site.replace(/\/+$/, "") + "/api/reader/get",
+                    {
+                      method: "POST",
+                      headers: e(
+                        {
+                          "Content-Type": "application/json",
+                          Accept: "application/json",
+                        },
+                        cookie ? { Cookie: cookie } : {},
+                      ),
+                      referrer: chapterUrl,
+                      body: JSON.stringify({
+                        translate: mode,
+                        language: this.sourceLang.replace("/", ""),
+                        raw_id: rawId,
+                        chapter_no: chapterNo,
+                        retry: false,
+                        force_retry: false,
+                      }),
+                    },
+                  )
+                    .then(function (r) { return r.text(); })
+                    .catch(function (err) { return ""; })
+                ];
+              case 5:
+                rawText = state.sent();
+                candidate = null;
+                try {
+                  candidate = JSON.parse(rawText);
+                } catch (err) {
+                  candidate = null;
+                }
+                if (!candidate) {
+                  attemptLog.push('"' + mode + '": response was not JSON: ' + String(rawText).slice(0, 100));
+                  fIdx++;
+                  return [3, 4];
+                }
+                if (candidate.error) {
+                  attemptLog.push('"' + mode + '": ' + candidate.error);
+                  fIdx++;
+                  return [3, 4];
+                }
+                if (candidate.success === false) {
+                  attemptLog.push('"' + mode + '": ' + (candidate.message || "request unsuccessful"));
+                  fIdx++;
+                  return [3, 4];
+                }
+                if (candidate.content_url && (!candidate.data || !candidate.data.data)) {
+                  contentFullUrl = candidate.content_url.startsWith("http")
+                    ? candidate.content_url
+                    : this.site.replace(/\/+$/, "") + "/" + candidate.content_url.replace(/^\/+/, "");
+                  state.label = 6;
+                  return [
+                    4,
+                    (0, t.fetchApi)(contentFullUrl, {
+                      method: "GET",
+                      headers: e(
+                        {
+                          Accept: "application/json",
+                          "Content-Type": "application/json",
+                        },
+                        cookie ? { Cookie: cookie } : {},
+                      ),
+                    })
+                      .then(function (r) { return r.json(); })
+                      .catch(function () { return null; })
+                  ];
+                }
+                return [3, 7];
+              case 6:
+                contentJson = state.sent();
+                if (contentJson && contentJson.success !== false && contentJson.data) {
+                  candidate.data = contentJson.data;
+                } else {
+                  attemptLog.push('"' + mode + '": failed to hydrate content_url');
+                  fIdx++;
+                  return [3, 4];
+                }
+                state.label = 7;
+              case 7:
+                if (candidate.data && candidate.data.data) {
+                  parsedJson = candidate;
+                  usedType = mode;
+                  return [3, 9];
+                }
+                attemptLog.push('"' + mode + '": missing data.data payload');
+                fIdx++;
+                return [3, 4];
+              case 8:
+                fIdx++;
+                return [3, 4];
+              case 9:
+                showNotice = i.storage.get("showModeNotice") !== false;
+                if (showNotice) {
+                  state.label = 10;
+                  return [4, this.checkSession()];
+                }
+                return [3, 11];
+              case 10:
+                cookieState = state.sent();
+                return [3, 12];
+              case 11:
+                cookieState = cookie ? "session cookie sent (" + cookie.length + " chars)" : "no session cookie set";
+                state.label = 12;
+              case 12:
+                if (!usedType || !parsedJson || !parsedJson.data || !parsedJson.data.data) {
+                  errorMsg = "None of the requested translations could be loaded [" + cookieState + "]. " + (attemptLog.length ? attemptLog.join(" | ") : "The server returned no usable response.");
+                  console.error(errorMsg);
+                  throw new Error(errorMsg);
+                }
+                chapterContent = parsedJson.data.data.body;
+                chapterGlossary = parsedJson.data.data.glossary_data;
+                htmlString = "";
+                if (chapterContent && (chapterContent.toString().startsWith("arr:") || chapterContent.toString().startsWith("str:"))) {
+                  state.label = 13;
+                  return [4, this.getKey(loadedCheerio)];
+                }
+                return [3, 17];
+              case 13:
+                encKey = state.sent();
+                state.label = 14;
+                return [4, this.decrypt(chapterContent, encKey)];
+              case 14:
+                chapterContent = state.sent();
+                if (chapterContent && chapterContent.error) {
+                  htmlString += "<p>" + chapterContent.error.toString() + "</p>";
+                  return [2, htmlString];
+                }
+                state.label = 15;
+              case 15:
+                if (typeof chapterContent === "string") {
+                  rawLines = chapterContent.split(/\r?\n/).filter(function (l) { return l.trim().length > 0; });
+                  chapterContent = rawLines;
+                }
+                state.label = 16;
+                return [4, this.translate(chapterContent)];
+              case 16:
+                chapterContent = state.sent();
+                usedType = usedType + " + Google Translate (on-device)";
+                state.label = 17;
+              case 17:
+                if (i.storage.get("showModeNotice") !== false && usedType) {
+                  htmlString += "<p><small>Translation: " + usedType + " — " + cookieState + "</small></p>";
+                }
+                if (attemptLog.length) {
+                  htmlString += '<p style="color:darkred;"><small>Skipped: ' + attemptLog.join(" | ") + "</small></p>";
+                }
+                terms = chapterGlossary && Array.isArray(chapterGlossary.terms)
+                  ? chapterGlossary.terms.map(function (t) { return t[0]; })
+                  : [];
+                contentArray = Array.isArray(chapterContent) ? chapterContent : [String(chapterContent)];
+                for (bIdx = 0; bIdx < contentArray.length; bIdx++) {
+                  para = contentArray[bIdx];
+                  if (terms.length > 0 && typeof para === "string") {
+                    para = para.replaceAll(/(?:wtr-lab\s+)?※([0-9]+)[⛬〓]/g, function (match, index) {
+                      return terms[parseInt(index, 10)] || match;
+                    });
+                  }
+                  htmlString += "<p>" + para + "</p>";
+                }
+                return [2, htmlString];
             }
-
-            if (!candidate.data || !candidate.data.data) {
-              attemptLog.push('"' + mode + '": missing data.data payload');
-              continue;
-            }
-
-            parsedJson = candidate;
-            usedType = mode;
-            break;
-          } catch (modeErr) {
-            attemptLog.push(
-              '"' +
-                mode +
-                '": exception ' +
-                (modeErr.message || String(modeErr)),
-            );
-          }
-        }
-
-        var showNotice = i.storage.get("showModeNotice") !== false;
-        var cookieState = showNotice
-          ? await this.checkSession()
-          : cookie
-            ? "session cookie sent (" + cookie.length + " chars)"
-            : "no session cookie set";
-
-        if (
-          !usedType ||
-          !parsedJson ||
-          !parsedJson.data ||
-          !parsedJson.data.data
-        ) {
-          var errorMsg =
-            "None of the requested translations could be loaded [" +
-            cookieState +
-            "]. " +
-            (attemptLog.length
-              ? attemptLog.join(" | ")
-              : "The server returned no usable response.");
-          console.error(errorMsg);
-          throw new Error(errorMsg);
-        }
-
-        var chapterContent = parsedJson.data.data.body;
-        var chapterGlossary = parsedJson.data.data.glossary_data;
-        var htmlString = "";
-
-        if (
-          chapterContent &&
-          (chapterContent.toString().startsWith("arr:") ||
-            chapterContent.toString().startsWith("str:"))
-        ) {
-          if (!loadedCheerio) {
-            var bodyText = await (0, t.fetchApi)(url).then(function (e) {
-              return e.text();
-            });
-            loadedCheerio = (0, u.load)(bodyText);
-          }
-          var encKey = await this.getKey(loadedCheerio);
-          chapterContent = await this.decrypt(chapterContent, encKey);
-          if (chapterContent && chapterContent.error) {
-            htmlString += "<p>" + chapterContent.error.toString() + "</p>";
-            return htmlString;
-          }
-          chapterContent = await this.translate(chapterContent);
-          usedType = usedType + " + Google Translate (on-device)";
-        } else if (Array.isArray(chapterContent)) {
-          chapterContent = await this.translate(chapterContent);
-          usedType = usedType + " + Google Translate (on-device)";
-        } else if (
-          typeof chapterContent === "string" &&
-          chapterContent.trim().length > 0
-        ) {
-          var rawLines = chapterContent.split(/\r?\n/).filter(function (l) {
-            return l.trim().length > 0;
           });
-          chapterContent = await this.translate(rawLines);
-          usedType = usedType + " + Google Translate (on-device)";
-        }
-
-        if (i.storage.get("showModeNotice") !== false && usedType) {
-          htmlString +=
-            "<p><small>Translation: " +
-            usedType +
-            " â€” " +
-            cookieState +
-            "</small></p>";
-        }
-
-        if (attemptLog.length) {
-          htmlString +=
-            '<p style="color:darkred;"><small>Skipped: ' +
-            attemptLog.join(" | ") +
-            "</small></p>";
-        }
-
-        var terms =
-          chapterGlossary && Array.isArray(chapterGlossary.terms)
-            ? chapterGlossary.terms.map(function (t) {
-                return t[0];
-              })
-            : [];
-
-        var contentArray = Array.isArray(chapterContent)
-          ? chapterContent
-          : [String(chapterContent)];
-        for (var bIdx = 0; bIdx < contentArray.length; bIdx++) {
-          var para = contentArray[bIdx];
-          if (terms.length > 0 && typeof para === "string") {
-            para = para.replaceAll(
-              /(?:wtr-lab\s+)?â€»([0-9]+)[â›¬ã€“]/g,
-              function (match, index) {
-                return terms[parseInt(index, 10)] || match;
-              },
-            );
-          }
-          htmlString += "<p>" + para + "</p>";
-        }
-
-        return htmlString;
+        });
       }),
       (o.prototype.fetchAllChapters = function (r, u) {
         return l(this, void 0, void 0, function () {
